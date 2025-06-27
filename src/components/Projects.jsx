@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Tooltip from './Tooltip';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -46,20 +47,30 @@ const Projects = () => {
           My Projects
         </h2>
         
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {['all', 'web', 'mobile', 'ui/ux'].map(filter => (
-            <button
-              key={filter}
-              onClick={() => setActiveFilter(filter)}
-              className={`px-6 py-2 rounded-full capitalize transition-all duration-300 ${
-                activeFilter === filter
-                  ? 'bg-primary text-white'
-                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-              }`}
-            >
-              {filter}
-            </button>
-          ))}
+        <div className="flex flex-wrap justify-center gap-4 mb-12">          {['all', 'web', 'mobile', 'ui/ux'].map(filter => {
+            // Generate tooltip text based on filter
+            const tooltipText = {
+              'all': 'View all projects',
+              'web': 'View web development projects',
+              'mobile': 'View mobile app projects',
+              'ui/ux': 'View UI/UX design projects'
+            }[filter];
+            
+            return (
+              <Tooltip key={filter} text={tooltipText}>
+                <button
+                  onClick={() => setActiveFilter(filter)}
+                  className={`px-6 py-2 rounded-full capitalize transition-all duration-300 ${
+                    activeFilter === filter
+                      ? 'bg-primary text-white'
+                      : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                  }`}
+                >
+                  {filter}
+                </button>
+              </Tooltip>
+            );
+          })}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -81,15 +92,16 @@ const Projects = () => {
                       {tech}
                     </span>
                   ))}
-                </div>
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-6 py-3 bg-primary hover:bg-primary/90 text-white rounded-lg transition-colors duration-300"
-                >
-                  View Project
-                </a>
+                </div>                <Tooltip text={`Check out the ${project.title} project`}>
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center px-6 py-3 bg-primary hover:bg-primary/90 text-white rounded-lg transition-colors duration-300"
+                  >
+                    View Project
+                  </a>
+                </Tooltip>
               </div>
             </div>
           ))}

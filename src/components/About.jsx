@@ -325,10 +325,10 @@ const About = () => {
                   <div className="flex items-start">
                     <div className="designer-timeline-dot"></div>
                     <div className="ml-4">
-                      <h4 className="designer-timeline-heading">Passionate Developer</h4>
+                      <h4 className="designer-timeline-heading">Frontend Developer & UI Designer</h4>
                       <p className="designer-timeline-text">
-                        I am a passionate developer with expertise in creating modern web applications.
-                        My journey in tech started with a curiosity about how things work on the internet.
+                        I'm a final year student with a passion for creating stunning web experiences. 
+                        I blend code and creativity to transform ideas into engaging, responsive interfaces.
                       </p>
                     </div>
                   </div>
@@ -338,10 +338,10 @@ const About = () => {
                   <div className="flex items-start">
                     <div className="designer-timeline-dot dot-secondary"></div>
                     <div className="ml-4">
-                      <h4 className="designer-timeline-heading">Years of Experience</h4>
+                      <h4 className="designer-timeline-heading">Academic Journey</h4>
                       <p className="designer-timeline-text">
-                        With several years of experience in web development, I've worked on various projects 
-                        ranging from small business websites to complex enterprise applications.
+                        Currently pursuing my final year in Information Technology. I've been consistently 
+                        exploring the intersection of technology and design through coursework and personal projects.
                       </p>
                     </div>
                   </div>
@@ -351,10 +351,11 @@ const About = () => {
                   <div className="flex items-start">
                     <div className="designer-timeline-dot dot-gradient"></div>
                     <div className="ml-4">
-                      <h4 className="designer-timeline-heading">Constant Learning</h4>
+                      <h4 className="designer-timeline-heading">Design Philosophy</h4>
                       <p className="designer-timeline-text">
-                        I'm constantly learning new technologies and methodologies to improve my skills
-                        and deliver better solutions to my clients.
+                        I believe in creating designs that not only look spectacular but also provide 
+                        intuitive user experiences. Every pixel matters in crafting digital solutions 
+                        that stand out in today's competitive landscape.
                       </p>
                     </div>
                   </div>
@@ -363,9 +364,9 @@ const About = () => {
               
               {/* Designer footer elements */}
               <div className="mt-10 pt-6 border-t border-white/10 flex justify-between items-center">
-                <div className="designer-tag">Designer</div>
-                <div className="designer-tag">Developer</div>
-                <div className="designer-tag">Creator</div>
+                <div className="designer-tag">Frontend Dev</div>
+                <div className="designer-tag">UI/UX</div>
+                <div className="designer-tag">Creative Coder</div>
               </div>
             </div>
           </div>

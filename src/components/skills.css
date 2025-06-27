@@ -1,0 +1,477 @@
+:root {
+  --color-primary-rgb: 99, 102, 241;
+  --color-secondary-rgb: 236, 72, 153;
+  --cyberpunk-yellow: 255, 209, 41;
+  --neon-blue: 80, 250, 250;
+}
+
+/* Futuristic Backgrounds */
+.liquid-animation {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, rgba(var(--color-primary-rgb), 0.05) 0%, transparent 50%, rgba(var(--color-primary-rgb), 0.1) 100%);
+  animation: liquidMove 15s infinite alternate ease-in-out;
+  opacity: 0.4;
+  z-index: 0;
+}
+
+.data-stream-animation {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(0deg, rgba(var(--color-secondary-rgb), 0.15) 1px, transparent 3px, transparent 10px);
+  background-size: 100% 15px;
+  animation: dataStream 20s linear infinite;
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.circuit-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.15) 2px, transparent 3px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px, 15px 15px, 15px 15px;
+  animation: circuitPulse 4s infinite alternate;
+  opacity: 0.2;
+  z-index: 0;
+}
+
+/* Cyberpunk-inspired grid */
+.skills-grid {
+  background-size: 50px 50px;
+  background-image: linear-gradient(to right, rgba(var(--cyberpunk-yellow), 0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(var(--cyberpunk-yellow), 0.05) 1px, transparent 1px);
+  transform: perspective(500px) rotateX(60deg);
+  transform-origin: center top;
+  height: 100%;
+  width: 200%;
+  left: -50%;
+  top: 0;
+  position: absolute;
+  animation: gridMove 30s linear infinite;
+}
+
+/* Glitchy corner animations */
+.corner-animation {
+  animation: glitchCorner 3s infinite alternate;
+}
+
+/* Digital particles effect */
+.digital-particles::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle at center, rgba(var(--neon-blue), 0.2) 1px, transparent 1px);
+  background-size: 30px 30px;
+  animation: particlesFade 8s infinite alternate;
+  opacity: 0.3;
+}
+
+/* Floating elements with glitch effect */
+.floating-element {
+  animation: floatGlitch 6s ease-in-out infinite;
+  position: relative;
+}
+
+.floating-element::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background-color: rgba(var(--neon-blue), 0.2);
+  opacity: 0;
+  animation: glitchFlicker 7s infinite;
+}
+
+.floating-element-reverse {
+  animation: floatGlitch 5s ease-in-out infinite reverse;
+}
+
+/* Neon skill bubbles */
+.skill-bubble {
+  padding: 0.5rem 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(var(--neon-blue), 0.4);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: rgba(var(--neon-blue), 0.9);
+  animation: bubbleFloat 8s ease-in-out infinite;
+  opacity: 0.8;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 10px rgba(var(--neon-blue), 0.3);
+  text-shadow: 0 0 5px rgba(var(--neon-blue), 0.5);
+}
+
+/* Cyberpunk-style glowing effect */
+.glow-effect {
+  animation: neonGlowPulse 3s infinite alternate;
+}
+
+/* Interactive skill cards */
+.skill-card-interactive {
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-card-interactive:hover {
+  transform: translateY(-15px) scale(1.03);
+  z-index: 10;
+  box-shadow: 
+    0 5px 15px rgba(0, 0, 0, 0.4),
+    0 0 15px rgba(var(--color-primary-rgb), 0.4);
+}
+
+.skill-card-interactive::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.1), 
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.skill-card-interactive:hover::after {
+  left: 100%;
+  transition: 0.5s;
+}
+
+/* Circular skill level indicator */
+.skill-level-ring {
+  transition: all 0.5s ease;
+  transform-origin: center;
+}
+
+/* Neon text effect */
+.neon-text {
+  text-shadow: 
+    0 0 5px rgba(var(--color-primary-rgb), 0.7),
+    0 0 10px rgba(var(--color-primary-rgb), 0.5),
+    0 0 15px rgba(var(--color-primary-rgb), 0.3);
+  animation: neonPulse 2s infinite alternate;
+}
+
+/* Connection lines with electric effect */
+.connection-line {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(var(--neon-blue), 0.7), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  overflow: hidden;
+}
+
+.connection-line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, white, transparent);
+  animation: electricFlow 2s infinite linear;
+}
+
+.skill-card-hover:hover .connection-line {
+  opacity: 1;
+}
+
+/* Cyberpunk hexagon grid */
+.hexagon-grid {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='hexagons' fill='%23FFD129' fill-opacity='0.1' fill-rule='nonzero'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.1;
+  animation: hexagonPulse 10s infinite alternate;
+}
+
+/* Matrix code rain with cyberpunk color */
+.matrix-code {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  opacity: 0.15;
+}
+
+.matrix-code span {
+  position: absolute;
+  top: -10px;
+  color: rgba(var(--cyberpunk-yellow), 0.7);
+  text-shadow: 0 0 5px rgba(var(--cyberpunk-yellow), 0.5);
+  font-family: monospace;
+  font-size: 1.2rem;
+  animation: matrixFall linear infinite;
+}
+
+/* Glitch text effect */
+.glitch-text {
+  position: relative;
+  animation: textGlitch 3s infinite;
+}
+
+.glitch-text::before, 
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-text::before {
+  left: 2px;
+  text-shadow: -1px 0 rgba(var(--neon-blue), 0.7);
+  animation: glitchBlock 3s infinite alternate-reverse;
+}
+
+.glitch-text::after {
+  left: -2px;
+  text-shadow: 1px 0 rgba(var(--cyberpunk-yellow), 0.7);
+  animation: glitchBlock 2s infinite alternate-reverse;
+}
+
+/* Holographic effect for cards */
+.holographic-effect {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.03) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.skill-card:hover .holographic-effect {
+  opacity: 1;
+  animation: holographicMove 2s infinite alternate;
+}
+
+/* Progress bar enhancement */
+.skill-progress-bar span {
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-progress-bar span::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 30px;
+  background: linear-gradient(90deg, 
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: progressShine 2s infinite;
+}
+
+/* Animated retro scanline effect */
+.retro-scanline {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.05) 0.5%,
+    transparent 1%
+  );
+  animation: scanlineMove 8s linear infinite;
+  pointer-events: none;
+  opacity: 0.15;
+}
+
+/* Tech dot pulse animation */
+.tech-dot-pulse {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: rgba(var(--color-primary-rgb), 0.7);
+  box-shadow: 0 0 8px rgba(var(--color-primary-rgb), 0.7);
+  animation: techDotPulse 2s infinite;
+}
+
+/* Animations */
+@keyframes liquidMove {
+  0% { transform: rotate(0deg) scale(1.2); }
+  100% { transform: rotate(20deg) scale(1.5); }
+}
+
+@keyframes dataStream {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100%; }
+}
+
+@keyframes circuitPulse {
+  0% { opacity: 0.1; background-position: 0 0; }
+  50% { opacity: 0.2; }
+  100% { opacity: 0.3; background-position: 5px 5px; }
+}
+
+@keyframes gridMove {
+  0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+  100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+}
+
+@keyframes glitchCorner {
+  0%, 100% { border-color: rgba(var(--color-primary-rgb), 0.4); }
+  25% { border-color: rgba(var(--neon-blue), 0.8); }
+  50% { border-color: rgba(var(--color-primary-rgb), 0.4); }
+  75% { border-color: rgba(var(--cyberpunk-yellow), 0.8); }
+  76% { border-color: transparent; }
+  77% { border-color: rgba(var(--neon-blue), 0.8); }
+  78% { border-color: transparent; }
+  79% { border-color: rgba(var(--cyberpunk-yellow), 0.8); }
+}
+
+@keyframes particlesFade {
+  0% { opacity: 0.2; background-position: 0px 0px; }
+  50% { opacity: 0.3; }
+  100% { opacity: 0.2; background-position: 30px 30px; }
+}
+
+@keyframes floatGlitch {
+  0%, 100% { transform: translateY(0px) rotate(-15deg); }
+  50% { transform: translateY(-15px) rotate(-10deg); }
+  74% { transform: translateY(-12px) rotate(-12deg); }
+  75% { transform: translateY(-18px); }
+  76% { transform: translateY(-10px); }
+  77% { transform: translateY(-15px); }
+  78% { transform: translateY(-12px); }
+}
+
+@keyframes glitchFlicker {
+  0%, 100% { opacity: 0; }
+  5%, 9%, 13%, 17%, 23% { opacity: 0.1; }
+  7%, 11%, 15%, 19%, 25% { opacity: 0; }
+  27%, 39%, 45% { opacity: 0; }
+  33%, 47% { opacity: 0.1; }
+  97%, 98%, 99% { opacity: 0.1; }
+}
+
+@keyframes bubbleFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  25%, 75% { box-shadow: 0 0 15px rgba(var(--neon-blue), 0.5); }
+  0%, 50%, 100% { box-shadow: 0 0 5px rgba(var(--neon-blue), 0.3); }
+}
+
+@keyframes neonGlowPulse {
+  0% { box-shadow: 0 0 5px rgba(var(--neon-blue), 0.7); }
+  100% { box-shadow: 0 0 20px rgba(var(--neon-blue), 0.9), 0 0 30px rgba(var(--neon-blue), 0.4); }
+}
+
+@keyframes neonPulse {
+  from { 
+    text-shadow: 
+      0 0 5px rgba(var(--neon-blue), 0.7), 
+      0 0 10px rgba(var(--neon-blue), 0.5); 
+  }
+  to { 
+    text-shadow: 
+      0 0 5px rgba(var(--neon-blue), 0.7), 
+      0 0 10px rgba(var(--neon-blue), 0.5), 
+      0 0 15px rgba(var(--neon-blue), 0.3), 
+      0 0 20px rgba(var(--neon-blue), 0.1); 
+  }
+}
+
+@keyframes electricFlow {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+@keyframes matrixFall {
+  0% { transform: translateY(-10px); opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+@keyframes textGlitch {
+  0%, 100% { transform: none; opacity: 1; }
+  7% { transform: skew(-0.5deg, -0.9deg); opacity: 0.75; }
+  10% { transform: none; opacity: 1; }
+  27% { transform: none; opacity: 1; }
+  30% { transform: skew(0.8deg, -0.1deg); opacity: 0.75; }
+  35% { transform: none; opacity: 1; }
+  52% { transform: none; opacity: 1; }
+  55% { transform: skew(-1deg, 0.2deg); opacity: 0.75; }
+  50% { transform: none; opacity: 1; }
+  72% { transform: none; opacity: 1; }
+  75% { transform: skew(0.4deg, 1deg); opacity: 0.75; }
+  80% { transform: none; opacity: 1; }
+}
+
+@keyframes glitchBlock {
+  0%, 100% { transform: none; opacity: 0.3; }
+  7% { transform: translate(-2px); opacity: 0.3; }
+  10% { transform: none; opacity: 0; }
+  27% { transform: none; opacity: 0; }
+  30% { transform: translate(2px); opacity: 0.3; }
+  35% { transform: none; opacity: 0; }
+  52% { transform: none; opacity: 0; }
+  55% { transform: translate(-2px); opacity: 0.3; }
+  50% { transform: none; opacity: 0; }
+  72% { transform: none; opacity: 0; }
+  75% { transform: translate(2px); opacity: 0.3; }
+  80% { transform: none; opacity: 0; }
+}
+
+@keyframes holographicMove {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+
+@keyframes progressShine {
+  0% { left: -30px; }
+  100% { left: 130%; }
+}
+
+@keyframes hexagonPulse {
+  0%, 100% { opacity: 0.05; }
+  50% { opacity: 0.15; }
+}
+
+@keyframes scanlineMove {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 1000px; }
+}
+
+@keyframes techDotPulse {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.5); opacity: 1; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .skill-bubble {
+    display: none;
+  }
+  
+  .skills-grid {
+    transform: perspective(500px) rotateX(70deg);
+  }
+}

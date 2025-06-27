@@ -235,7 +235,7 @@ const Navbar = () => {
           
           {/* Social Links */}
           <div className="mt-16 flex justify-center space-x-6">
-            {['twitter', 'github', 'linkedin', 'instagram'].map((social) => (
+            {['github', 'linkedin'].map((social) => (
               <a 
                 key={social}
                 href="#" 
