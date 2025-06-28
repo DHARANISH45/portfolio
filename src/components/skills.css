@@ -314,6 +314,76 @@
   animation: techDotPulse 2s infinite;
 }
 
+/* New skill animations */
+.hexagonal-mesh-bg {
+  background-image: radial-gradient(rgba(0, 100, 255, 0.1) 2px, transparent 2px);
+  background-size: 20px 20px;
+  background-position: 0 0;
+  width: 100%;
+  height: 100%;
+  animation: meshFloat 10s linear infinite;
+}
+
+@keyframes meshFloat {
+  0% { background-position: 0 0; }
+  100% { background-position: 20px 20px; }
+}
+
+.pulse-line-animation {
+  animation: pulseLine 3s ease-in-out infinite;
+}
+
+@keyframes pulseLine {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+.digital-pulse {
+  animation: digitalPulse 2s ease-in-out infinite;
+}
+
+@keyframes digitalPulse {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
+.skill-icon-float {
+  animation: iconFloat 3s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.data-point-blink {
+  animation: dataBlink 3s ease-in-out infinite;
+}
+
+@keyframes dataBlink {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.glow-border-animation {
+  animation: glowBorder 4s ease-in-out infinite;
+}
+
+@keyframes glowBorder {
+  0%, 100% { box-shadow: 0 0 5px rgba(0, 100, 255, 0.1); }
+  50% { box-shadow: 0 0 15px rgba(0, 100, 255, 0.3); }
+}
+
+/* Add this for the floating animation */
+@keyframes floating {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.animate-floating {
+  animation: floating 3s ease-in-out infinite;
+}
+
 /* Animations */
 @keyframes liquidMove {
   0% { transform: rotate(0deg) scale(1.2); }

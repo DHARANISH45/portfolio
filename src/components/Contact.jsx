@@ -2,12 +2,18 @@ import { useState, useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Tooltip from './Tooltip';
+import emailjs from '@emailjs/browser';
 import './contact.css';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
 
 const Contact = () => {
+  // Initialize EmailJS only once when component mounts
+  useEffect(() => {
+    emailjs.init('xbsKln-p-eEju1bh1');
+  }, []);
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -21,6 +27,8 @@ const Contact = () => {
   const formRef = useRef(null);
   const infoRef = useRef(null);
   const particlesRef = useRef(null);
+  
+  // GSAP animations and other useEffects will be below
 
   // Form validation
   const validateForm = () => {
@@ -56,8 +64,24 @@ const Contact = () => {
     if (Object.keys(errors).length === 0) {
       setIsSubmitting(true);
       
-      // Simulate form submission (replace with actual API call)
-      setTimeout(() => {
+      // Log form data for debugging
+      console.log('Form data being sent:', {
+        name: formData.name,
+        email: formData.email,
+        message: formData.message
+      });
+      
+      // Try both methods of sending with EmailJS
+      
+      // Method 1: Using sendForm with form reference
+      emailjs.sendForm(
+        'service_njarydg', // EmailJS service ID
+        'template_xuzthgo', // EmailJS template ID
+        formRef.current, // Using the form reference
+        'xbsKln-p-eEju1bh1' // EmailJS public key
+      )
+      .then((response) => {
+        console.log('Email sent successfully with sendForm:', response);
         setIsSubmitting(false);
         setShowSuccess(true);
         
@@ -70,22 +94,70 @@ const Contact = () => {
             message: ''
           });
         }, 3000);
-      }, 1500);
+      })
+      .catch((error) => {
+        console.error('Error with sendForm method:', error.text || error.message || error);
+        console.log('Trying alternative send method...');
+        
+        // Method 2: Using direct send method as fallback
+        emailjs.send(
+          'service_njarydg', // EmailJS service ID
+          'template_xuzthgo', // EmailJS template ID
+          {
+            from_name: formData.name,
+            reply_to: formData.email,
+            message: formData.message
+          },
+          'xbsKln-p-eEju1bh1' // EmailJS public key
+        )
+        .then((response) => {
+          console.log('Email sent successfully with direct send:', response);
+          setIsSubmitting(false);
+          setShowSuccess(true);
+          
+          // Reset form after showing success message
+          setTimeout(() => {
+            setShowSuccess(false);
+            setFormData({
+              name: '',
+              email: '',
+              message: ''
+            });
+          }, 3000);
+        })
+        .catch((secondError) => {
+          console.error('Error with both methods. Final error:', secondError);
+          setIsSubmitting(false);
+          setFormErrors({ 
+            submit: "Failed to send message. Please try again or contact directly via email."
+          });
+        });
+      });
     }
   };
   
   const handleChange = (e) => {
     const { name, value } = e.target;
+    
+    // Map field names from EmailJS template fields to our state properties
+    const fieldMap = {
+      'from_name': 'name',
+      'reply_to': 'email',
+      'message': 'message'
+    };
+    
+    const stateField = fieldMap[name] || name;
+    
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [stateField]: value
     }));
     
     // Clear error when user starts typing
-    if (formErrors[name]) {
+    if (formErrors[stateField]) {
       setFormErrors(prev => ({
         ...prev,
-        [name]: null
+        [stateField]: null
       }));
     }
   };
@@ -338,6 +410,8 @@ const Contact = () => {
     };
   }, []);
   
+  // Component continues with the return statement below
+  
   return (
     <section id="contact" ref={sectionRef} className="min-h-screen flex flex-col items-center justify-center py-20 px-4 relative overflow-hidden">
       {/* Designer background gradient */}
@@ -372,9 +446,10 @@ const Contact = () => {
           <div className="absolute -right-6 top-1/2 transform -translate-y-1/2 w-12 h-6 bg-secondary/30 rounded-full blur-sm"></div>
         </div>
 
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 relative">          {/* Contact Form */}
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 relative">          
+          {/* Contact Form */}
           <div ref={formRef} className="flex flex-col space-y-6">
-            <form onSubmit={handleSubmit} className="flex flex-col space-y-8 backdrop-blur-sm p-8 rounded-xl border border-gray-800/50 bg-black/20 shadow-xl relative group hover-reveal">
+            <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col space-y-8 backdrop-blur-sm p-8 rounded-xl border border-gray-800/50 bg-black/20 shadow-xl relative group hover-reveal">
               {/* Design corner accents */}
               <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary/60 rounded-tl-lg"></div>
               <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary/60 rounded-tr-lg"></div>
@@ -404,7 +479,7 @@ const Contact = () => {
                   <input
                     type="text"
                     id="name"
-                    name="name"
+                    name="from_name" // EmailJS template variable name
                     value={formData.name}
                     onChange={handleChange}
                     onFocus={() => handleFocus('name')}
@@ -429,7 +504,7 @@ const Contact = () => {
                   <input
                     type="email"
                     id="email"
-                    name="email"
+                    name="reply_to" // EmailJS template variable name
                     value={formData.email}
                     onChange={handleChange}
                     onFocus={() => handleFocus('email')}
@@ -453,7 +528,7 @@ const Contact = () => {
                 <div className="relative">
                   <textarea
                     id="message"
-                    name="message"
+                    name="message" // EmailJS template variable name
                     value={formData.message}
                     onChange={handleChange}
                     onFocus={() => handleFocus('message')}
@@ -469,7 +544,16 @@ const Contact = () => {
                   {formErrors.message}
                 </div>
               </div>
-                <Tooltip text="Send me a message">
+                
+              {/* Display general submit error if any */}
+              {formErrors.submit && (
+                <div className="error-message visible mt-4">
+                  <span className="error-icon">⚠️</span>
+                  {formErrors.submit}
+                </div>
+              )}
+                
+              <Tooltip text="Send me a message">
                 <button 
                   type="submit"
                   disabled={isSubmitting}

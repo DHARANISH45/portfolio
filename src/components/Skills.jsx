@@ -321,58 +321,35 @@ const Skills = () => {
               </>
             )}
             
-            {/* Add skill level circular indicator */}
-            <div className="absolute top-6 right-16 flex items-center justify-center">
-              <svg className="w-14 h-14" viewBox="0 0 36 36">
-                <path className="skill-level-ring" 
-                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                  fill="none"
-                  stroke="rgba(var(--color-primary-rgb), 0.2)"
-                  strokeWidth="3"
-                />
-                <path 
-                  className="skill-level-ring"
-                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                  fill="none"
-                  stroke="var(--color-primary)"
-                  strokeWidth="3"                  strokeDasharray={`${85 * 0.9}, 100`}
-                  strokeLinecap="round"
-                /><text x="18" y="20.5" textAnchor="middle" fill="white" fontSize="8px" fontWeight="bold">85%</text>
-              </svg>
-            </div>
-            
-            <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-white mb-4 flex items-center relative z-10 neon-text">
+            <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-white mb-6 flex items-center relative z-10 neon-text">
               <div className="w-1 h-6 bg-primary mr-3 rounded-full"></div>
               Frontend
             </h3>
             
-            {/* Add skill rating stars */}
-            <div className="flex items-center mb-4 relative z-10">
-              <div className="text-xs text-gray-400 mr-2">Proficiency:</div>
-              <div className="flex space-x-1">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <svg key={star} className="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
+            {/* Simple tag with no proficiency information */}
+            <div className="inline-block mb-6 px-3 py-1 text-xs bg-primary/5 border border-primary/10 rounded-md text-primary/80 relative z-10">
+              UI Development
             </div>
             
-            <ul className="space-y-6 mt-6 relative z-10">
+            {/* Skills list with no proficiency indicators */}
+            <ul className="grid grid-cols-1 gap-3 mt-6 relative z-10">
               {frontendSkills.map((skill, index) => (
-                <li key={index} className="skill-item">
-                  <div className="flex items-center mb-2">
-                    <div className="skill-icon w-8 h-8 mr-3 flex-shrink-0 bg-black/30 rounded-md p-1.5 border border-primary/20">
-                      <img src={skill.icon} alt={skill.name} className="w-full h-full" />
-                    </div>
-                    <span className="font-medium text-white">{skill.name}</span>
-                    <span className="ml-auto text-xs text-gray-400">{skill.level}%</span>
+                <li key={index} className="skill-item flex items-center p-2.5 rounded-md bg-black/30 border border-primary/10 hover:border-primary/30 transition-all duration-300">
+                  <div className="skill-icon w-9 h-9 p-1.5 rounded-md bg-black/40 border border-primary/10 flex items-center justify-center mr-4">
+                    <img 
+                      src={skill.icon}
+                      alt={skill.name}
+                      className="w-full h-full filter brightness-110 animate-floating"
+                      style={{ animationDelay: `${index * 0.2}s` }}
+                    />
                   </div>
-                  <div className="skill-progress-bar w-full h-1.5 bg-gray-700/50 rounded-full overflow-hidden">
-                    <span 
-                      className="block h-full bg-gradient-to-r from-primary to-primary/70 rounded-full"
-                      style={{ width: `${skill.level}%` }}
-                    ></span>
+                  <span className="font-medium text-white tracking-wide">{skill.name}</span>
+                  
+                  {/* Decorative element */}
+                  <div className="ml-auto">
+                    <div className="w-6 h-6 rounded-full bg-primary/5 flex items-center justify-center">
+                      <div className="w-3 h-3 rounded-full bg-primary/20 animate-pulse"></div>
+                    </div>
                   </div>
                 </li>
               ))}
@@ -420,61 +397,35 @@ const Skills = () => {
               </>
             )}
             
-            {/* Add skill level circular indicator */}
-            <div className="absolute top-6 right-16 flex items-center justify-center">
-              <svg className="w-14 h-14" viewBox="0 0 36 36">
-                <path className="skill-level-ring" 
-                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                  fill="none"
-                  stroke="rgba(var(--color-secondary-rgb), 0.2)"
-                  strokeWidth="3"
-                />
-                <path 
-                  className="skill-level-ring"
-                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                  fill="none"
-                  stroke="var(--color-secondary)"
-                  strokeWidth="3"                  strokeDasharray={`${70 * 0.9}, 100`}
-                  strokeLinecap="round"
-                /><text x="18" y="20.5" textAnchor="middle" fill="white" fontSize="8px" fontWeight="bold">70%</text>
-              </svg>
-            </div>
-            
-            <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-secondary to-white mb-4 flex items-center relative z-10">
+            <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-secondary to-white mb-6 flex items-center relative z-10">
               <div className="w-1 h-6 bg-secondary mr-3 rounded-full"></div>
               Backend
             </h3>
             
-            {/* Add skill rating stars */}
-            <div className="flex items-center mb-4 relative z-10">
-              <div className="text-xs text-gray-400 mr-2">Proficiency:</div>
-              <div className="flex space-x-1">
-                {[1, 2, 3, 4].map((star) => (
-                  <svg key={star} className="w-4 h-4 text-secondary" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-                <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-              </div>
+            {/* Simple tag with no proficiency information */}
+            <div className="inline-block mb-6 px-3 py-1 text-xs bg-secondary/5 border border-secondary/10 rounded-md text-secondary/80 relative z-10">
+              Server Development
             </div>
             
-            <ul className="space-y-6 mt-6 relative z-10">
+            {/* Skills list with no proficiency indicators */}
+            <ul className="grid grid-cols-1 gap-3 mt-6 relative z-10">
               {backendSkills.map((skill, index) => (
-                <li key={index} className="skill-item">
-                  <div className="flex items-center mb-2">
-                    <div className="skill-icon w-8 h-8 mr-3 flex-shrink-0 bg-black/30 rounded-md p-1.5 border border-secondary/20">
-                      <img src={skill.icon} alt={skill.name} className="w-full h-full" />
-                    </div>
-                    <span className="font-medium text-white">{skill.name}</span>
-                    <span className="ml-auto text-xs text-gray-400">{skill.level}%</span>
+                <li key={index} className="skill-item flex items-center p-2.5 rounded-md bg-black/30 border border-secondary/10 hover:border-secondary/30 transition-all duration-300">
+                  <div className="skill-icon w-9 h-9 p-1.5 rounded-md bg-black/40 border border-secondary/10 flex items-center justify-center mr-4">
+                    <img 
+                      src={skill.icon}
+                      alt={skill.name}
+                      className="w-full h-full filter brightness-110 animate-floating"
+                      style={{ animationDelay: `${index * 0.2}s` }}
+                    />
                   </div>
-                  <div className="skill-progress-bar w-full h-1.5 bg-gray-700/50 rounded-full overflow-hidden">
-                    <span 
-                      className="block h-full bg-gradient-to-r from-secondary to-secondary/70 rounded-full"
-                      style={{ width: `${skill.level}%` }}
-                    ></span>
+                  <span className="font-medium text-white tracking-wide">{skill.name}</span>
+                  
+                  {/* Decorative element */}
+                  <div className="ml-auto">
+                    <div className="w-6 h-6 rounded-full bg-secondary/5 flex items-center justify-center">
+                      <div className="w-3 h-3 rounded-full bg-secondary/20 animate-pulse"></div>
+                    </div>
                   </div>
                 </li>
               ))}
@@ -522,63 +473,35 @@ const Skills = () => {
               </>
             )}
             
-            {/* Add skill level circular indicator */}
-            <div className="absolute top-6 right-16 flex items-center justify-center">
-              <svg className="w-14 h-14" viewBox="0 0 36 36">
-                <path className="skill-level-ring" 
-                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                  fill="none"
-                  stroke="rgba(255, 255, 255, 0.2)"
-                  strokeWidth="3"
-                />
-                <path 
-                  className="skill-level-ring"
-                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                  fill="none"
-                  stroke="white"
-                  strokeWidth="3"
-                  strokeDasharray={`${85 * 0.9}, 100`}
-                  strokeLinecap="round"
-                />
-                <text x="18" y="20.5" textAnchor="middle" fill="white" fontSize="8px" fontWeight="bold">85%</text>
-              </svg>
-            </div>
-            
-            <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 mb-4 flex items-center relative z-10">
+            <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 mb-6 flex items-center relative z-10">
               <div className="w-1 h-6 bg-white/70 mr-3 rounded-full"></div>
               Tools
             </h3>
             
-            {/* Add skill rating stars */}
-            <div className="flex items-center mb-4 relative z-10">
-              <div className="text-xs text-gray-400 mr-2">Proficiency:</div>
-              <div className="flex space-x-1">
-                {[1, 2, 3, 4].map((star) => (
-                  <svg key={star} className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-                <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-              </div>
+            {/* Simple tag with no proficiency information */}
+            <div className="inline-block mb-6 px-3 py-1 text-xs bg-white/5 border border-white/10 rounded-md text-white/80 relative z-10">
+              Development Tools
             </div>
             
-            <ul className="space-y-6 mt-6 relative z-10">
+            {/* Skills list with no proficiency indicators */}
+            <ul className="grid grid-cols-1 gap-3 mt-6 relative z-10">
               {toolsSkills.map((skill, index) => (
-                <li key={index} className="skill-item">
-                  <div className="flex items-center mb-2">
-                    <div className="skill-icon w-8 h-8 mr-3 flex-shrink-0 bg-black/30 rounded-md p-1.5 border border-white/20">
-                      <img src={skill.icon} alt={skill.name} className="w-full h-full" />
-                    </div>
-                    <span className="font-medium text-white">{skill.name}</span>
-                    <span className="ml-auto text-xs text-gray-400">{skill.level}%</span>
+                <li key={index} className="skill-item flex items-center p-2.5 rounded-md bg-black/30 border border-white/10 hover:border-white/30 transition-all duration-300">
+                  <div className="skill-icon w-9 h-9 p-1.5 rounded-md bg-black/40 border border-white/10 flex items-center justify-center mr-4">
+                    <img 
+                      src={skill.icon}
+                      alt={skill.name}
+                      className="w-full h-full filter brightness-110 animate-floating"
+                      style={{ animationDelay: `${index * 0.2}s` }}
+                    />
                   </div>
-                  <div className="skill-progress-bar w-full h-1.5 bg-gray-700/50 rounded-full overflow-hidden">
-                    <span 
-                      className="block h-full bg-gradient-to-r from-white/80 to-gray-400/70 rounded-full"
-                      style={{ width: `${skill.level}%` }}
-                    ></span>
+                  <span className="font-medium text-white tracking-wide">{skill.name}</span>
+                  
+                  {/* Decorative element */}
+                  <div className="ml-auto">
+                    <div className="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center">
+                      <div className="w-3 h-3 rounded-full bg-white/20 animate-pulse"></div>
+                    </div>
                   </div>
                 </li>
               ))}
@@ -598,61 +521,20 @@ const Skills = () => {
           </div>
           
           <h3 className="text-center text-xl font-bold mb-8 text-white/90 neon-text">TECHNICAL PROFICIENCY</h3>
-            <div className="grid grid-cols-3 gap-8">
+          <div className="grid grid-cols-3 gap-8">
             {[
-              { name: 'FRONTEND', percentage: 85, color: '#50FAFA' },
-              { name: 'BACKEND', percentage: 70, color: '#FFD129' },
-              { name: 'TOOLS', percentage: 85, color: '#FFFFFF' }
+              { name: 'FRONTEND', color: '#50FAFA', icon: '💻' },
+              { name: 'BACKEND', color: '#FFD129', icon: '🔧' },
+              { name: 'TOOLS', color: '#FFFFFF', icon: '🛠️' }
             ].map((category, index) => (
               <div key={index} className="flex flex-col items-center">
-                <svg className="w-32 h-32" viewBox="0 0 100 100">
-                  <circle 
-                    cx="50" 
-                    cy="50" 
-                    r="45" 
-                    fill="none" 
-                    stroke="rgba(255,255,255,0.1)" 
-                    strokeWidth="5"
-                  />
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="45"
-                    fill="none"
-                    stroke={category.color}
-                    strokeWidth="5"
-                    strokeDasharray={`${category.percentage * 2.83}, 300`}
-                    strokeLinecap="round"
-                    transform="rotate(-90 50 50)"
-                    style={{
-                      filter: `drop-shadow(0 0 5px ${category.color})`
-                    }}
-                  />
-                  <text 
-                    x="50" 
-                    y="50" 
-                    textAnchor="middle" 
-                    dominantBaseline="middle" 
-                    fill={category.color} 
-                    fontSize="18"
-                    fontWeight="bold"
-                    style={{
-                      textShadow: `0 0 5px ${category.color}`
-                    }}
-                  >
-                    {category.percentage}%
-                  </text>
-                  <text 
-                    x="50" 
-                    y="65" 
-                    textAnchor="middle" 
-                    dominantBaseline="middle" 
-                    fill="white" 
-                    fontSize="8"
-                  >
-                    {category.name}
-                  </text>
-                </svg>
+                <div className="w-24 h-24 rounded-full border-2 flex items-center justify-center mb-3" 
+                     style={{ borderColor: category.color, boxShadow: `0 0 15px ${category.color}40` }}>
+                  <span className="text-4xl">{category.icon}</span>
+                </div>
+                <span className="text-sm font-mono tracking-wider" style={{ color: category.color }}>
+                  {category.name}
+                </span>
               </div>
             ))}
           </div>
@@ -663,7 +545,6 @@ const Skills = () => {
           <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-[#FFD129] rounded-bl-lg corner-animation"></div>
           <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#50FAFA] rounded-br-lg corner-animation"></div>
         </div>
-  
       </div>
     </section>
   );
