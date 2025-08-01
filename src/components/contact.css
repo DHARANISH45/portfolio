@@ -3,104 +3,63 @@
 .designer-grid {
   background-image: 
     linear-gradient(rgba(138, 43, 226, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(138, 43, 226, 0.05) 1px, transparent 1px),
-    linear-gradient(rgba(0, 191, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 191, 255, 0.03) 1px, transparent 1px);
-  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
-  background-position: 0 0, 0 0, 0 0, 0 0;
-  animation: move-grid 30s linear infinite;
+    linear-gradient(90deg, rgba(138, 43, 226, 0.05) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px;
+  background-position: 0 0, 0 0;
 }
 
-@keyframes move-grid {
-  0% {
-    background-position: 0 0, 0 0, 0 0, 0 0;
-  }
-  100% {
-    background-position: 100px 0, 100px 0, 20px 0, 20px 0;
-  }
-}
-
-/* Floating animations */
+/* Simplified floating animations */
 .shape:nth-child(1) {
-  animation: float 15s ease-in-out infinite, pulse 12s ease-in-out infinite;
+  animation: pulse 8s ease-in-out infinite;
 }
 
 .shape:nth-child(2) {
-  animation: float 18s ease-in-out infinite, pulse 15s ease-in-out infinite;
+  animation: pulse 10s ease-in-out infinite;
   animation-delay: 1s;
 }
 
 .shape:nth-child(3) {
-  animation: float 20s ease-in-out infinite, pulse 13s ease-in-out infinite;
+  animation: pulse 9s ease-in-out infinite;
   animation-delay: 2s;
 }
 
 .shape:nth-child(4) {
-  animation: pulse 12s ease-in-out infinite;
+  animation: pulse 7s ease-in-out infinite;
   animation-delay: 2s;
 }
 
 .shape:nth-child(5) {
-  animation: pulse 14s ease-in-out infinite;
+  animation: pulse 8s ease-in-out infinite;
   animation-delay: 4s;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px);
-  }
-  33% {
-    transform: translateY(-20px) translateX(10px);
-  }
-  66% {
-    transform: translateY(-10px) translateX(-10px);
-  }
 }
 
 @keyframes pulse {
   0%, 100% {
     transform: scale(1);
-    opacity: 0.5;
+    opacity: 0.6;
   }
   50% {
-    transform: scale(1.1);
+    transform: scale(1.05);
     opacity: 0.8;
   }
 }
 
-/* Input focus animation */
+/* Input focus animation - simplified */
 form input:focus, form textarea:focus {
-  box-shadow: 0 0 15px rgba(138, 43, 226, 0.2);
+  box-shadow: 0 0 8px rgba(138, 43, 226, 0.15);
 }
 
-/* Button hover effect */
+/* Button hover effect - simplified */
 button[type="submit"]:hover {
-  box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 10px rgba(138, 43, 226, 0.2);
 }
 
-/* Social icons hover effect */
+/* Social icons hover effect - simplified */
 .social-links a:hover {
-  box-shadow: 0 0 15px rgba(138, 43, 226, 0.3);
+  box-shadow: 0 0 8px rgba(138, 43, 226, 0.2);
 }
 
-/* Particle animation */
-.particles-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 0;
-}
-
-.particle {
-  position: absolute;
-  background: rgba(138, 43, 226, 0.2);
-  border-radius: 50%;
-  pointer-events: none;
-}
+/* Removed particle animation - too performance intensive */
 
 /* Form validation styles */
 .error-message {
@@ -209,57 +168,11 @@ button[type="submit"]:hover {
   }
 }
 
-/* Flying code brackets animation */
-@keyframes flyAcross {
-  0% {
-    transform: translate(-100%, 0) rotate(-10deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.7;
-  }
-  90% {
-    opacity: 0.7;
-  }
-  100% {
-    transform: translate(200%, 0) rotate(10deg);
-    opacity: 0;
-  }
-}
+/* Removed flying code brackets animation - too performance intensive */
 
-.flying-element {
-  position: absolute;
-  color: rgba(138, 43, 226, 0.3);
-  font-family: monospace;
-  font-size: 2rem;
-  font-weight: bold;
-  pointer-events: none;
-  z-index: 1;
-  text-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
-  animation: flyAcross 15s linear infinite;
-}
+/* Removed data visualization ripple - too performance intensive */
 
-/* Data visualization ripple */
-.data-ripple {
-  position: absolute;
-  border-radius: 50%;
-  transform: scale(0);
-  animation: ripple 2s linear infinite;
-  background: radial-gradient(circle, rgba(138, 43, 226, 0.4) 0%, rgba(138, 43, 226, 0) 70%);
-}
-
-@keyframes ripple {
-  0% {
-    transform: scale(0);
-    opacity: 0.5;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0;
-  }
-}
-
-/* Hover reveal effect */
+/* Simplified hover reveal effect */
 .hover-reveal {
   position: relative;
   overflow: hidden;
@@ -272,11 +185,11 @@ button[type="submit"]:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.2), transparent);
-  transform: translateX(-100%);
-  transition: transform 0.6s ease;
+  background: rgba(138, 43, 226, 0.1);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .hover-reveal:hover::before {
-  transform: translateX(100%);
+  opacity: 1;
 }

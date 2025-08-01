@@ -1,26 +1,20 @@
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
-import Intro from './intro';
 import Navbar from './nav';
 import Tooltip from './Tooltip';
 import backgroundVideo from '../assets/v2.mp4';
-import image1 from '../assets/1.jpg'
+import profileImage from '../assets/1.jpg';
 
 const Home = () => {
-  const [showContent, setShowContent] = useState(false);
   const contentContainerRef = useRef(null);
   const nameTextRef = useRef(null);
   const descriptionRef = useRef(null);
   const profileRef = useRef(null);
   const videoRef = useRef(null);
-
-  const handleIntroComplete = () => {
-    setShowContent(true);
-  };
   
   // Main content animations
   useEffect(() => {
-    if (showContent && contentContainerRef.current && videoRef.current) {
+    if (contentContainerRef.current && videoRef.current) {
       // First, set all initial states
       gsap.set(videoRef.current, {
         opacity: 0,
@@ -38,11 +32,11 @@ const Home = () => {
         y: 30,
         rotateZ: 2
       });
+      
       gsap.set(profileRef.current, {
         opacity: 0,
-        scale: 0.5,
-        rotation: -360,
-        y: 50
+        scale: 0.9,
+        y: 20
       });
       
       // Create single timeline for synchronized animations
@@ -72,19 +66,28 @@ const Home = () => {
       .to(profileRef.current, {
         opacity: 1,
         scale: 1,
-        rotation: 0,
         y: 0,
-        duration: 1.8,
-        ease: "elastic.out(1, 0.5)"
+        duration: 1.5,
+        ease: "back.out(1.2)"
       }, "-=0.9");
     }
-  }, [showContent]);
+  }, []);
   
   // Custom styles for vignette effect and animations
   const customStyles = `
     .bg-radial-gradient {
       background: radial-gradient(circle, transparent 50%, rgba(0, 0, 0, 0.7) 150%);
       pointer-events: none;
+    }
+    
+    /* Subtle profile image animation */
+    .profile-image-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .profile-image-hover:hover {
+      transform: scale(1.02) translateY(-5px);
+      box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.5);
     }
     
     .muted-text {
@@ -113,18 +116,9 @@ const Home = () => {
       100% { transform: translateY(0) rotate(0deg); }
     }
     
-    /* Enhanced 3D floating with perspective */
+    /* Simplified floating animation */
     .float-3d {
-      animation: float3d 10s ease-in-out infinite;
-      transform-style: preserve-3d;
-    }
-    
-    @keyframes float3d {
-      0% { transform: translateZ(0) translateY(0) rotateX(0deg) rotateY(0deg); }
-      25% { transform: translateZ(10px) translateY(-5px) rotateX(3deg) rotateY(5deg); }
-      50% { transform: translateZ(5px) translateY(-15px) rotateX(-2deg) rotateY(-3deg); }
-      75% { transform: translateZ(8px) translateY(-7px) rotateX(2deg) rotateY(-5deg); }
-      100% { transform: translateZ(0) translateY(0) rotateX(0deg) rotateY(0deg); }
+      animation: floating 8s ease-in-out infinite;
     }
     
     /* Subtle pulsing glow - enhanced */
@@ -138,15 +132,9 @@ const Home = () => {
       100% { opacity: 0.7; box-shadow: 0 0 5px rgba(255, 255, 255, 0.1); }
     }
     
-    /* Intense pulsing glow for highlights */
+    /* Simplified pulsing effect */
     .pulse-intense {
-      animation: pulseIntense 3s ease-in-out infinite;
-    }
-    
-    @keyframes pulseIntense {
-      0% { opacity: 0.6; filter: brightness(0.9) blur(1px); box-shadow: 0 0 5px rgba(255, 255, 255, 0.2); }
-      50% { opacity: 1; filter: brightness(1.2) blur(0px); box-shadow: 0 0 25px rgba(255, 255, 255, 0.5), 0 0 10px rgba(147, 51, 234, 0.5) inset; }
-      100% { opacity: 0.6; filter: brightness(0.9) blur(1px); box-shadow: 0 0 5px rgba(255, 255, 255, 0.2); }
+      animation: pulse 3s ease-in-out infinite;
     }
     
     /* Background shapes animation */
@@ -213,37 +201,15 @@ const Home = () => {
       transform: translateY(-5px) scale(1.03);
     }
     
-    /* Spotlight hover effect - enhanced */
+    /* Simple spotlight effect */
     .spotlight {
       position: relative;
       overflow: hidden;
+      transition: transform 0.3s ease;
     }
     
-    .spotlight:after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -60%;
-      width: 20%;
-      height: 200%;
-      opacity: 0;
-      background: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.4) 100%
-      );
-      transform: rotate(30deg);
-      transition: opacity 0.3s;
-    }
-    
-    .spotlight:hover:after {
-      opacity: 1;
-      animation: spotlight 1s ease-in-out;
-    }
-    
-    @keyframes spotlight {
-      0% { left: -60%; }
-      100% { left: 140%; }
+    .spotlight:hover {
+      transform: scale(1.02);
     }
     
     /* Background moving particles */
@@ -314,16 +280,9 @@ const Home = () => {
       transform: perspective(500px) rotateX(5deg);
     }
     
-    /* Glowing border effect */
+    /* Simplified glowing border */
     .glow-border {
       box-shadow: 0 0 5px rgba(149, 76, 233, 0.3);
-      animation: borderGlow 4s ease-in-out infinite;
-    }
-    
-    @keyframes borderGlow {
-      0% { box-shadow: 0 0 5px rgba(149, 76, 233, 0.3); }
-      50% { box-shadow: 0 0 15px rgba(149, 76, 233, 0.7), 0 0 30px rgba(149, 76, 233, 0.4); }
-      100% { box-shadow: 0 0 5px rgba(149, 76, 233, 0.3); }
     }
   `;
 
@@ -331,14 +290,11 @@ const Home = () => {
     <>
       {/* Custom styles */}
       <style>{customStyles}</style>
-      {/* Navbar only appears after intro complete */}
-      {showContent && <Navbar />}
-      
-      {/* Intro component with enter button */}
-      {!showContent && <Intro onComplete={handleIntroComplete} />}
+      {/* Navbar always visible now */}
+      <Navbar />
       
       {/* Home content with background video */}
-      <div id="home" className={`min-h-screen overflow-hidden bg-black transition-all duration-1000 ${showContent ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}>
+      <div id="home" className="min-h-screen overflow-hidden bg-black transition-all duration-1000 opacity-100 scale-100">
         {/* Main content */}
         <div ref={contentContainerRef} className="relative z-10 min-h-screen">
           {/* Video Background with Optimized Size */}
@@ -475,61 +431,28 @@ const Home = () => {
                 </div>
               </div>
               
+              {/* Profile image section on the right side */}
               <div ref={profileRef} className="w-full md:w-2/5 flex justify-center md:justify-end items-center">
                 <div className="relative mx-auto md:mx-0 max-w-xs w-full">
-                  {/* Enhanced animated decorative elements */}
-                  <div className="absolute -top-4 -right-4 w-12 h-12 border-2 border-primary/50 rounded-lg transform rotate-12 opacity-70 float"></div>
-                  <div className="absolute -bottom-6 -left-6 w-10 h-10 bg-secondary/20 rounded-full float-delay blur-sm"></div>
-                  <div className="absolute top-1/4 -right-8 w-6 h-6 bg-primary/30 rounded-full float-slow blur-sm"></div>
-                  <div className="absolute bottom-1/3 -left-8 w-4 h-4 bg-white/20 rounded-full float blur-sm"></div>
-                  <div className="absolute top-3/4 right-1/4 w-5 h-5 bg-primary/40 rounded-full float-3d"></div>
+                  {/* Border and background effect */}
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/30 to-secondary/30 transform -rotate-2 scale-105 z-0"></div>
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-tl from-primary/10 to-secondary/10 transform rotate-1 scale-[1.02] z-0"></div>
                   
-                  {/* Enhanced code brackets for developer theme */}
-                  <div className="absolute -top-8 left-1/4 text-2xl text-primary/40 font-mono float-slow">{'{'}</div>
-                  <div className="absolute -bottom-8 right-1/4 text-2xl text-primary/40 font-mono float">{'}'}</div>
-                  <div className="absolute top-1/2 -right-10 text-sm text-secondary/30 font-mono transform rotate-90 float-slow">.profile</div>
-                  <div className="absolute top-1/4 -left-2 text-xs text-white/20 font-mono transform -rotate-90 float-delay">&lt;Developer/&gt;</div>
-                  
-                  {/* Enhanced animated decorative lines */}
-                  <div className="absolute -top-2 left-0 w-20 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent pulse-glow"></div>
-                  <div className="absolute -bottom-2 right-0 w-20 h-[1px] bg-gradient-to-r from-transparent via-secondary/50 to-transparent pulse-glow" style={{animationDelay: '2s'}}></div>
-                  <div className="absolute top-1/2 -left-12 w-10 h-[1px] bg-gradient-to-r from-primary/30 to-transparent pulse-glow" style={{animationDelay: '1s'}}></div>
-                  <div className="absolute top-1/4 -right-12 w-10 h-[1px] bg-gradient-to-r from-secondary/30 to-transparent pulse-glow" style={{animationDelay: '1.5s'}}></div>
-                  
-                  {/* Enhanced glowing frame effects */}
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/30 to-secondary/30 backdrop-blur-sm border border-white/10 transform -rotate-3 scale-105 z-0 pulse-intense"></div>
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-tl from-primary/10 to-secondary/10 transform rotate-2 scale-[1.02] z-0 pulse-glow" style={{animationDelay: '2s'}}></div>
-                  
-                  {/* Main image with enhanced effects */}
+                  {/* Profile Image */}
                   <img 
-                    src={image1}
+                    src={profileImage}
                     alt="Dharanish" 
-                    className="relative z-10 rounded-xl shadow-xl border-2 border-white/20 object-cover w-full aspect-[4/5] spotlight"
-                    style={{filter: 'contrast(1.05) brightness(1.05)'}}
+                    className="relative z-10 rounded-xl shadow-xl border-2 border-white/20 object-cover w-full aspect-[4/5] profile-image-hover"
                   />
                   
-                  {/* Enhanced image overlays for depth effect */}
-                  <div className="absolute inset-0 rounded-xl bg-primary/10 mix-blend-overlay z-20"></div>
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-transparent via-white/5 to-transparent z-30"></div>
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-bl from-black/20 via-transparent to-transparent mix-blend-multiply z-20"></div>
+                  {/* Simple decorative elements */}
+                  <div className="absolute -top-4 -right-4 w-12 h-12 border-2 border-primary/50 rounded-lg transform rotate-12 opacity-70"></div>
+                  <div className="absolute -bottom-4 -left-4 w-10 h-10 bg-secondary/20 rounded-full"></div>
                   
-                  {/* Tech dots decoration with enhanced effects */}
-                  <div className="absolute bottom-6 -right-8 flex space-x-1.5">
-                    <div className="w-2.5 h-2.5 rounded-full bg-blue-400 pulse-intense"></div>
-                    <div className="w-2.5 h-2.5 rounded-full bg-purple-400 pulse-intense" style={{animationDelay: '0.5s'}}></div>
-                    <div className="w-2.5 h-2.5 rounded-full bg-pink-400 pulse-intense" style={{animationDelay: '1s'}}></div>
-                  </div>
-                  
-                  {/* Visual code-themed decoration at bottom */}
+                  {/* Code-themed decoration at bottom */}
                   <div className="absolute -bottom-10 left-0 right-0 flex justify-center">
                     <div className="px-2.5 py-1 bg-black/60 backdrop-blur-sm rounded text-[10px] text-white/70 border border-white/10 font-mono">// Portfolio 2024</div>
                   </div>
-                  
-                  {/* Corner decorations */}
-                  <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-primary/60"></div>
-                  <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-secondary/60"></div>
-                  <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-secondary/60"></div>
-                  <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-primary/60"></div>
                 </div>
               </div>
             </div>

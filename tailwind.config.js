@@ -9,6 +9,7 @@ export default {
       colors: {
         primary: "#3b82f6", // Blue color
         secondary: "#8b5cf6", // Purple color
+        accent: "#f472b6", // Pink color for accents
       }
     },
   },
