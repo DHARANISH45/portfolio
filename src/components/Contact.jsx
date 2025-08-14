@@ -4,16 +4,40 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Tooltip from './Tooltip';
 import emailjs from '@emailjs/browser';
 import './contact.css';
+import { validateTemplateParams } from '../emailjs-template-helper';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
 
-const Contact = () => {
-  // Initialize EmailJS only once when component mounts
-  useEffect(() => {
-    emailjs.init('xbsKln-p-eEju1bh1');
-  }, []);
+// EmailJS configuration
+const EMAILJS_SERVICE_ID = 'service_yo16z4d';
+const EMAILJS_TEMPLATE_ID = 'template_r5dvawe';
+const EMAILJS_PUBLIC_KEY = 'I-8rfS4bSH7-sYddY';
+
+// Initialize EmailJS with error handling
+try {
+  emailjs.init(EMAILJS_PUBLIC_KEY);
+  console.log('EmailJS initialized successfully');
   
+  // Verify account exists by checking service list
+  emailjs.listServices(EMAILJS_PUBLIC_KEY)
+    .then(response => {
+      console.log('EmailJS services:', response);
+      if (response && response.services && response.services.length === 0) {
+        console.warn('No EmailJS services found. Please create a service in your EmailJS account.');
+      }
+    })
+    .catch(error => {
+      console.error('Failed to verify EmailJS account:', error);
+      if (error.text && error.text.includes('Account not found')) {
+        console.error('EmailJS Account not found. Please verify your Public Key.');
+      }
+    });
+} catch (error) {
+  console.error('Failed to initialize EmailJS:', error);
+}
+
+const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -24,7 +48,7 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const sectionRef = useRef(null);
-  const formRef = useRef(null);
+  const formRef = useRef(null); // Form reference for DOM element
   const infoRef = useRef(null);
   const particlesRef = useRef(null);
   
@@ -64,24 +88,72 @@ const Contact = () => {
     if (Object.keys(errors).length === 0) {
       setIsSubmitting(true);
       
-      // Log form data for debugging
-      console.log('Form data being sent:', {
+      // Clear any previous errors
+      setFormErrors({});
+      
+      // Create the template parameters object with proper field names
+      const templateParams = {
+        from_name: formData.name,
+        reply_to: formData.email,
+        message: formData.message,
+        // Add more fields to ensure message content is visible
+        subject: "New Contact Message from Portfolio",
         name: formData.name,
         email: formData.email,
-        message: formData.message
+        to_name: "Dharanish", // Your name as the recipient
+        // Add a timestamp for uniqueness
+        timestamp: new Date().toISOString()
+      };
+      
+      console.log('Sending email with params:', templateParams);
+      console.log('Using EmailJS config:', { 
+        serviceId: EMAILJS_SERVICE_ID,
+        templateId: EMAILJS_TEMPLATE_ID,
+        publicKey: EMAILJS_PUBLIC_KEY 
       });
       
-      // Try both methods of sending with EmailJS
-      
-      // Method 1: Using sendForm with form reference
-      emailjs.sendForm(
-        'service_njarydg', // EmailJS service ID
-        'template_xuzthgo', // EmailJS template ID
-        formRef.current, // Using the form reference
-        'xbsKln-p-eEju1bh1' // EmailJS public key
-      )
+      // Send the email with EmailJS
+      sendEmailWithRetry(templateParams, 0);
+    }
+  };
+  
+  // Helper function to send email with retry capability
+  const sendEmailWithRetry = (templateParams, retryCount, maxRetries = 2) => {
+    // Add essential message verification
+    if (!templateParams.message) {
+      console.error('Missing message content in template params');
+      setFormErrors({ submit: "Error: Message content is missing" });
+      setIsSubmitting(false);
+      return;
+    }
+    
+    // Validate template parameters
+    try {
+      const validation = validateTemplateParams(templateParams);
+      if (!validation.valid) {
+        console.error('Invalid template params:', validation);
+        setFormErrors({ submit: `Error: Missing required fields: ${validation.missingFields.join(', ')}` });
+        setIsSubmitting(false);
+        return;
+      }
+    } catch (e) {
+      console.warn('Template validation error:', e);
+    }
+    
+    // Log template params for debugging
+    console.log('Template params:', {
+      ...templateParams,
+      message: templateParams.message.substring(0, 30) + '...' // Show only start of message
+    });
+    
+    emailjs.send(
+      EMAILJS_SERVICE_ID,
+      EMAILJS_TEMPLATE_ID,
+      templateParams,
+      EMAILJS_PUBLIC_KEY
+    )
       .then((response) => {
-        console.log('Email sent successfully with sendForm:', response);
+        console.log('Email sent successfully:', response);
         setIsSubmitting(false);
         setShowSuccess(true);
         
@@ -96,44 +168,61 @@ const Contact = () => {
         }, 3000);
       })
       .catch((error) => {
-        console.error('Error with sendForm method:', error.text || error.message || error);
-        console.log('Trying alternative send method...');
+        console.error(`Error sending email (attempt ${retryCount + 1}):`, error);
         
-        // Method 2: Using direct send method as fallback
-        emailjs.send(
-          'service_njarydg', // EmailJS service ID
-          'template_xuzthgo', // EmailJS template ID
-          {
-            from_name: formData.name,
-            reply_to: formData.email,
-            message: formData.message
-          },
-          'xbsKln-p-eEju1bh1' // EmailJS public key
-        )
-        .then((response) => {
-          console.log('Email sent successfully with direct send:', response);
-          setIsSubmitting(false);
-          setShowSuccess(true);
-          
-          // Reset form after showing success message
+        // Detailed error logging
+        if (error.status) {
+          console.error(`EmailJS error status: ${error.status}`);
+        }
+        if (error.text) {
+          console.error(`EmailJS error details: ${error.text}`);
+        }
+        
+        // Try again if we haven't exceeded max retries
+        if (retryCount < maxRetries) {
+          console.log(`Retrying... (${retryCount + 1}/${maxRetries})`);
           setTimeout(() => {
-            setShowSuccess(false);
-            setFormData({
-              name: '',
-              email: '',
-              message: ''
-            });
-          }, 3000);
-        })
-        .catch((secondError) => {
-          console.error('Error with both methods. Final error:', secondError);
-          setIsSubmitting(false);
-          setFormErrors({ 
-            submit: "Failed to send message. Please try again or contact directly via email."
-          });
-        });
+            sendEmailWithRetry(templateParams, retryCount + 1, maxRetries);
+          }, 1000); // Wait 1 second before retrying
+          return;
+        }
+        
+        // All retries failed, show error to user
+        let errorMessage = "Failed to send message. Please try again or contact directly via email.";
+        
+        if (error.status === 404) {
+          if (error.text && error.text.includes("Account not found")) {
+            errorMessage = "EmailJS account not found. Please verify your EmailJS account setup.";
+          } else {
+            errorMessage = "Email service not found. Please contact via the direct email link below.";
+          }
+        } else if (error.status === 400) {
+          errorMessage = "Invalid form data. Please check all fields and try again.";
+        } else if (error.status === 401 || error.status === 403) {
+          errorMessage = "Authentication error. Please contact via the direct email link below.";
+        } else if (error.status === 429) {
+          errorMessage = "Too many requests. Please try again later.";
+        } else if (!navigator.onLine) {
+          errorMessage = "You appear to be offline. Please check your internet connection.";
+        }
+        
+        setIsSubmitting(false);
+        setFormErrors({ submit: errorMessage });
+        
+        // Show direct contact information after max retries
+        if (error.status === 404 || error.status === 401 || error.status === 403) {
+          const additionalInfo = error.text && error.text.includes('Account not found') ?
+            " The EmailJS account was not found. This could be due to an expired account or incorrect public key." :
+            " You can email me directly using the link below.";
+            
+          setFormErrors(prev => ({ 
+            ...prev, 
+            fallback: true,
+            debug: null, // Clear any debug messages
+            submit: errorMessage + additionalInfo
+          }));
+        }
       });
-    }
   };
   
   const handleChange = (e) => {
@@ -146,7 +235,9 @@ const Contact = () => {
       'message': 'message'
     };
     
-    const stateField = fieldMap[name] || name;
+    // Get the corresponding state field name
+    const stateField = name === 'from_name' ? 'name' : 
+                       name === 'reply_to' ? 'email' : 'message';
     
     setFormData(prev => ({
       ...prev,
@@ -448,7 +539,7 @@ const Contact = () => {
 
         <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 relative">          
           {/* Contact Form */}
-          <div ref={formRef} className="flex flex-col space-y-6">
+          <div className="flex flex-col space-y-6">
             <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col space-y-8 backdrop-blur-sm p-8 rounded-xl border border-gray-800/50 bg-black/20 shadow-xl relative group hover-reveal">
               {/* Design corner accents */}
               <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary/60 rounded-tl-lg"></div>
@@ -479,7 +570,7 @@ const Contact = () => {
                   <input
                     type="text"
                     id="name"
-                    name="from_name" // EmailJS template variable name
+                    name="from_name"
                     value={formData.name}
                     onChange={handleChange}
                     onFocus={() => handleFocus('name')}
@@ -504,7 +595,7 @@ const Contact = () => {
                   <input
                     type="email"
                     id="email"
-                    name="reply_to" // EmailJS template variable name
+                    name="reply_to"
                     value={formData.email}
                     onChange={handleChange}
                     onFocus={() => handleFocus('email')}
@@ -528,7 +619,7 @@ const Contact = () => {
                 <div className="relative">
                   <textarea
                     id="message"
-                    name="message" // EmailJS template variable name
+                    name="message"
                     value={formData.message}
                     onChange={handleChange}
                     onFocus={() => handleFocus('message')}
@@ -545,34 +636,49 @@ const Contact = () => {
                 </div>
               </div>
                 
+              {/* Debug message removed */}
+              
               {/* Display general submit error if any */}
               {formErrors.submit && (
                 <div className="error-message visible mt-4">
                   <span className="error-icon">⚠️</span>
                   {formErrors.submit}
+                  {(formErrors.fallback || formErrors.submit.includes("account not found") || formErrors.submit.includes("service not found") || formErrors.submit.includes("Failed to send")) ? (
+                    <div className="mt-2">
+                      <span className="text-sm">Or email me directly: </span>
+                      <a 
+                        href="mailto:dharanishslc@gmail.com" 
+                        className="text-sm text-primary hover:underline"
+                      >
+                        dharanishslc@gmail.com
+                      </a>
+                    </div>
+                  ) : null}
                 </div>
               )}
                 
-              <Tooltip text="Send me a message">
-                <button 
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="px-8 py-4 bg-transparent hover:bg-primary/20 text-white font-semibold rounded-lg transition-all duration-300 relative overflow-hidden border border-primary/50 hover:border-primary group disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  <span className="relative z-10 flex items-center justify-center">
-                    {isSubmitting ? (
-                      <>
-                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                        Sending...
-                      </>
-                    ) : "Send Message"}
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-secondary/80 opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-                </button>
-              </Tooltip>
+              <div className="flex justify-center">
+                <Tooltip text="Send me a message">
+                  <button 
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="px-8 py-4 bg-transparent hover:bg-primary/20 text-white font-semibold rounded-lg transition-all duration-300 relative overflow-hidden border border-primary/50 hover:border-primary group disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    <span className="relative z-10 flex items-center justify-center">
+                      {isSubmitting ? (
+                        <>
+                          <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          Sending...
+                        </>
+                      ) : "Send Message"}
+                    </span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-secondary/80 opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+                  </button>
+                </Tooltip>
+              </div>
               
               {/* Success message overlay */}
               <div className={`success-message ${showSuccess ? 'visible' : ''}`}>

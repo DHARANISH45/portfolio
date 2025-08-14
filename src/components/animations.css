@@ -6,14 +6,15 @@
   --secondary: rgb(0, 191, 255);
 }
 
-/* ---- 3D CONTAINER STYLES - Simplified ---- */
+/* ---- 3D CONTAINER STYLES ---- */
 .spline-container {
   position: relative;
-  transition: transform 0.3s ease-out;
+  transform: perspective(1000px) rotateX(3deg);
+  transition: transform 0.6s ease-out;
 }
 
 .spline-container:hover {
-  transform: scale(1.02);
+  transform: perspective(1000px) rotateX(0deg);
 }
 
 /* Hide the Spline watermark */
@@ -28,36 +29,46 @@
   z-index: 10;
 }
 
-/* Simplified animated border */
-.animate-border-pulse {
-  border-color: rgba(138, 43, 226, 0.3);
-  box-shadow: 0 0 8px rgba(138, 43, 226, 0.2);
+/* Animated border for 3D container */
+@keyframes border-pulse {
+  0% { border-color: rgba(138, 43, 226, 0.2); box-shadow: 0 0 0 rgba(138, 43, 226, 0); }
+  50% { border-color: rgba(138, 43, 226, 0.5); box-shadow: 0 0 15px rgba(138, 43, 226, 0.3); }
+  100% { border-color: rgba(138, 43, 226, 0.2); box-shadow: 0 0 0 rgba(138, 43, 226, 0); }
 }
 
-/* Grid overlay for tech effect - simplified */
+.animate-border-pulse {
+  animation: border-pulse 3s infinite ease-in-out;
+}
+
+/* Grid overlay for tech effect */
 .grid-overlay {
   background-image: 
-    linear-gradient(rgba(138, 43, 226, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(138, 43, 226, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(138, 43, 226, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(138, 43, 226, 0.1) 1px, transparent 1px);
   background-size: 20px 20px;
-  opacity: 0.15;
+  opacity: 0.2;
   transition: opacity 0.3s ease;
 }
 
 .spline-container:hover .grid-overlay {
-  opacity: 0.25;
+  opacity: 0.4;
 }
 
-/* Simplified glow border effect */
+/* Glow border effect */
 .glow-border {
-  box-shadow: 0 0 10px 2px rgba(138, 43, 226, 0.3);
-  transition: opacity 0.3s ease;
+  box-shadow: 0 0 20px 5px rgba(138, 43, 226, 0.5);
+  transition: opacity 0.6s ease;
 }
 
-/* Simplified tech pulse */
+/* Tech dots animation */
+@keyframes tech-pulse {
+  0% { transform: scale(0.8); opacity: 0.4; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(0.8); opacity: 0.4; }
+}
+
 .animate-tech-pulse {
-  opacity: 0.7;
-  transform: scale(1);
+  animation: tech-pulse 2s infinite ease-in-out;
 }
 
 .animation-delay-300 {
@@ -68,13 +79,25 @@
   animation-delay: 0.6s;
 }
 
-/* Simplified code brackets */
+/* Code brackets animation */
+@keyframes code-bracket {
+  0% { transform: translateY(-5px); opacity: 0.5; }
+  50% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-5px); opacity: 0.5; }
+}
+
+@keyframes code-bracket-reverse {
+  0% { transform: translateY(5px); opacity: 0.5; }
+  50% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(5px); opacity: 0.5; }
+}
+
 .animate-code-bracket {
-  opacity: 0.7;
+  animation: code-bracket 3s infinite ease-in-out;
 }
 
 .animate-code-bracket-reverse {
-  opacity: 0.7;
+  animation: code-bracket-reverse 3s infinite ease-in-out;
 }
 
 /* ---- CONTENT ANIMATIONS AND STYLING ---- */
@@ -278,13 +301,25 @@
 
 /* ==== DESIGNER STYLE ADDITIONS ==== */
 
-/* Designer Grid Overlays - Simplified */
+/* Designer Grid Overlays */
 .designer-grid {
   background-image: 
     linear-gradient(rgba(138, 43, 226, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(138, 43, 226, 0.05) 1px, transparent 1px);
-  background-size: 100px 100px, 100px 100px;
-  background-position: 0 0, 0 0;
+    linear-gradient(90deg, rgba(138, 43, 226, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(0, 191, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 191, 255, 0.03) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  background-position: 0 0, 0 0, 0 0, 0 0;
+  animation: move-grid 15s linear infinite;
+}
+
+@keyframes move-grid {
+  0% {
+    background-position: 0 0, 0 0, 0 0, 0 0;
+  }
+  100% {
+    background-position: 100px 0, 100px 0, 20px 0, 20px 0;
+  }
 }
 
 .designer-vertical-line {
@@ -309,30 +344,52 @@
   border-top: 1px solid rgba(0, 191, 255, 0.3);
 }
 
-/* Simplified Designer Shapes */
+/* Designer Shapes */
 .designer-shape-diamond {
   transform: rotate(45deg);
   background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), transparent 70%);
   border: 1px solid rgba(138, 43, 226, 0.3);
+  animation: float-rotate 12s ease-in-out infinite;
 }
 
 .designer-shape-circle {
   border-radius: 50%;
   background: radial-gradient(circle at center, rgba(0, 191, 255, 0.15), transparent 70%);
   border: 1px solid rgba(0, 191, 255, 0.3);
+  animation: pulse-rotate 15s ease-in-out infinite;
 }
 
 .designer-shape-triangle {
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   background: linear-gradient(to bottom, rgba(138, 43, 226, 0.1), transparent);
+  animation: float-bounce 10s ease-in-out infinite;
 }
 
 .designer-shape-square {
   background: linear-gradient(45deg, rgba(0, 191, 255, 0.1), transparent);
   border: 1px solid rgba(0, 191, 255, 0.2);
+  animation: pulse-spin 14s ease-in-out infinite;
 }
 
-/* Removed complex animations */
+@keyframes float-rotate {
+  0%, 100% { transform: rotate(45deg) translateY(0); opacity: 0.7; }
+  50% { transform: rotate(225deg) translateY(-20px); opacity: 0.9; }
+}
+
+@keyframes pulse-rotate {
+  0%, 100% { transform: scale(0.9); opacity: 0.5; }
+  50% { transform: scale(1.1) rotate(180deg); opacity: 0.8; }
+}
+
+@keyframes float-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(-15px) scale(0.95); opacity: 0.9; }
+}
+
+@keyframes pulse-spin {
+  0%, 100% { transform: rotate(0deg) scale(0.85); opacity: 0.5; }
+  50% { transform: rotate(90deg) scale(1.1); opacity: 0.8; }
+}
 
 /* Designer lines */
 .designer-line {
@@ -412,10 +469,38 @@
   animation-delay: 0.4s;
 }
 
-/* Simple spin animation */
+/* Designer loader */
+.designer-loader {
+  width: 80px;
+  height: 80px;
+  border: 3px solid transparent;
+  border-top-color: var(--primary);
+  border-bottom-color: var(--secondary);
+  border-radius: 50%;
+  animation: spin 1.5s linear infinite;
+}
+
+.designer-loader-inner {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  top: 10px;
+  left: 10px;
+  border: 3px solid transparent;
+  border-left-color: var(--primary);
+  border-right-color: var(--secondary);
+  border-radius: 50%;
+  animation: spin-reverse 1s linear infinite;
+}
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+@keyframes spin-reverse {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
 }
 
 /* Designer card */
