@@ -161,35 +161,35 @@ const Home = () => {
           
           {/* Main content */}
           <div className="w-full max-w-7xl flex flex-col z-20 h-screen mx-auto">
-            <div className="flex flex-col md:flex-row items-center md:items-stretch justify-between px-4 md:px-8 gap-8 w-full h-full">
-              <div ref={nameTextRef} className="flex flex-col justify-center items-start w-full md:w-3/5 relative">
+            <div className="flex flex-col md:flex-row items-center justify-center md:items-stretch md:justify-between px-4 md:px-8 gap-8 w-full h-full pt-16 md:pt-0">
+              <div ref={nameTextRef} className="flex flex-col justify-center items-center md:items-start w-full md:w-3/5 relative">
                 {/* Removed most decorative elements */}
                 
                 {/* Main heading with simplified gradient effect */}
-                <h1 className="text-5xl md:text-7xl font-extrabold mb-2 text-left bg-gradient-to-r from-primary via-white to-secondary bg-clip-text text-transparent relative">
+                <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold mb-2 text-center md:text-left bg-gradient-to-r from-primary via-white to-secondary bg-clip-text text-transparent relative">
                   Dharanish
                   <span className="absolute -right-4 -top-4 text-xs text-secondary/40">v1.0</span>
                 </h1>
                 
                 {/* Subtitle with no animation */}
-                <h3 className="text-xl text-left text-white/70 mt-1 mb-3">
+                <h3 className="text-xl text-center md:text-left text-white/70 mt-1 mb-3">
                   <span className="text-primary font-semibold">Full-Stack Developer</span> & UI Designer
                 </h3>
                 
                 {/* Description with simplified text effects */}
                 <div className="mt-4">
-                  <p ref={descriptionRef} className="text-xl md:text-2xl max-w-2xl text-left text-white/75">
+                  <p ref={descriptionRef} className="text-lg sm:text-xl md:text-2xl max-w-2xl text-center md:text-left text-white/75">
                     A professional developer specializing in creating beautiful and functional web experiences.
                   </p>
                 </div>
                 
                 {/* Removed code snippet decoration */}
                     {/* Simplified Social Links */}                
-                <div className="flex items-center space-x-4 mt-8">
+                <div className="flex items-center justify-center md:justify-start space-x-4 mt-8">
                   <Tooltip text="Check my GitHub repositories">
                     <a href="https://github.com/DHARANISH45" target="_blank" rel="noopener noreferrer">
-                      <div className="flex items-center justify-center w-12 h-12 rounded-full bg-black/40 border border-white/10 text-white/80 hover:text-white transition-all duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                      <div className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 border border-white/10 text-white/80 hover:text-white transition-all duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
                           <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
                         </svg>
                       </div>
@@ -217,15 +217,15 @@ const Home = () => {
                   </Tooltip>
                 </div>
                   {/* Simplified Call to Action Buttons */}                
-                <div className="mt-8 flex flex-wrap gap-4">
+                <div className="mt-8 flex flex-wrap justify-center md:justify-start gap-4">
                   <Tooltip text="Check out my projects section">
-                    <a href="#projects" className="px-6 py-3 bg-primary hover:bg-primary/90 text-white font-medium text-lg rounded-lg transition-all duration-300">
+                    <a href="#projects" className="px-5 sm:px-6 py-2.5 sm:py-3 bg-primary hover:bg-primary/90 text-white font-medium text-base sm:text-lg rounded-lg transition-all duration-300">
                       View My Work
                     </a>
                   </Tooltip>
                   
                   <Tooltip text="Reach out through the contact form">
-                    <a href="#contact" className="px-6 py-3 bg-black/60 border border-white/30 hover:border-white/60 text-white/85 font-medium text-lg rounded-lg transition-all duration-300">
+                    <a href="#contact" className="px-5 sm:px-6 py-2.5 sm:py-3 bg-black/60 border border-white/30 hover:border-white/60 text-white/85 font-medium text-base sm:text-lg rounded-lg transition-all duration-300">
                       Get In Touch
                     </a>
                   </Tooltip>
@@ -238,11 +238,11 @@ const Home = () => {
                 </div>
               </div>
               
-              <div ref={profileRef} className="w-full md:w-2/5 flex justify-center md:justify-end items-center">
-                <div className="mx-auto md:mx-0 max-w-xs w-full relative z-20">
+              <div ref={profileRef} className="w-full md:w-2/5 flex justify-center md:justify-end items-center mt-8 md:mt-0">
+                <div className="mx-auto md:mx-0 max-w-[220px] sm:max-w-xs w-full relative z-20">
                   {/* Profile image with enhanced edges and glow effect */}
                   <div className="profile-container relative bg-gradient-to-br from-blue-500/40 via-purple-500/30 to-indigo-500/40 p-1 rounded-2xl shadow-2xl transition-all duration-500 hover:from-blue-500/60 hover:via-purple-500/50 hover:to-indigo-500/60 hover:shadow-[0_0_30px_rgba(59,130,246,0.6)]">
-                    <div className="image-frame p-3 bg-black/30 backdrop-blur-sm rounded-xl border border-white/10">
+                    <div className="image-frame p-2 sm:p-3 bg-black/30 backdrop-blur-sm rounded-xl border border-white/10">
                       <img 
                         src={profileImage}
                         alt="Dharanish" 

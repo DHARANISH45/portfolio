@@ -350,10 +350,10 @@ const Skills = () => {
           </p>
         </div>
         
-        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8 px-4">
+        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8 px-2 sm:px-4">
           {/* Frontend Skills Card - Enhanced with more cyberpunk elements */}
           <div 
-            className="skill-card skill-card-interactive backdrop-blur-sm p-4 md:p-6 rounded-xl border border-gray-800/60 bg-black/30 relative group hover-effect overflow-hidden skill-card-hover"
+            className="skill-card skill-card-interactive backdrop-blur-sm p-3 sm:p-4 md:p-6 rounded-xl border border-gray-800/60 bg-black/30 relative group hover-effect overflow-hidden skill-card-hover"
             onMouseEnter={() => setActiveSkill('frontend')}
             onMouseLeave={() => setActiveSkill(null)}
           >
@@ -429,7 +429,7 @@ const Skills = () => {
           
           {/* Backend Skills Card - Similar responsive improvements */}
           <div 
-            className="skill-card skill-card-interactive backdrop-blur-sm p-4 md:p-6 rounded-xl border border-gray-800/60 bg-black/30 relative group hover-effect overflow-hidden skill-card-hover mt-6 md:mt-0"
+            className="skill-card skill-card-interactive backdrop-blur-sm p-3 sm:p-4 md:p-6 rounded-xl border border-gray-800/60 bg-black/30 relative group hover-effect overflow-hidden skill-card-hover mt-4 sm:mt-6 md:mt-0"
             onMouseEnter={() => setActiveSkill('backend')}
             onMouseLeave={() => setActiveSkill(null)}
           >
@@ -505,7 +505,7 @@ const Skills = () => {
           
           {/* Tools Skills Card - Similar responsive improvements */}
           <div 
-            className="skill-card skill-card-interactive backdrop-blur-sm p-4 md:p-6 rounded-xl border border-gray-800/60 bg-black/30 relative group hover-effect overflow-hidden skill-card-hover mt-6 md:mt-0"
+            className="skill-card skill-card-interactive backdrop-blur-sm p-3 sm:p-4 md:p-6 rounded-xl border border-gray-800/60 bg-black/30 relative group hover-effect overflow-hidden skill-card-hover mt-4 sm:mt-6 md:mt-0"
             onMouseEnter={() => setActiveSkill('tools')}
             onMouseLeave={() => setActiveSkill(null)}
           >
@@ -581,13 +581,13 @@ const Skills = () => {
         </div>
         
         {/* Add a futuristic skill comparison dashboard */}
-        <div className="mt-10 md:mt-16 bg-black/60 backdrop-blur-sm p-5 md:p-8 rounded-xl border border-gray-800/50 max-w-3xl mx-auto relative">
+        <div className="mt-8 sm:mt-10 md:mt-16 bg-black/60 backdrop-blur-sm p-4 sm:p-5 md:p-8 rounded-xl border border-gray-800/50 max-w-3xl mx-auto relative">
           <div className="absolute inset-0 overflow-hidden">
             <div className="circuit-pattern opacity-10"></div>
           </div>
           
-          <h3 className="text-center text-lg md:text-xl font-bold mb-6 md:mb-8 text-white/90 neon-text">TECHNICAL PROFICIENCY</h3>
-          <div className="grid grid-cols-3 gap-3 md:gap-8">
+          <h3 className="text-center text-base sm:text-lg md:text-xl font-bold mb-4 sm:mb-6 md:mb-8 text-white/90 neon-text">TECHNICAL PROFICIENCY</h3>
+          <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-8">
             {[
               { name: 'FRONTEND', color: '#50FAFA', icon: '💻' },
               { name: 'BACKEND', color: '#FFD129', icon: '🔧' },

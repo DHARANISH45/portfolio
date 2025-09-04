@@ -212,7 +212,7 @@ const Projects = () => {
       <div className="container mx-auto max-w-6xl flex flex-col items-center z-10">
         <motion.h2 
           variants={itemVariants}
-          className="text-4xl md:text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary relative"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-10 md:mb-16 text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary relative"
         >
           My Projects
           <motion.span 
@@ -226,7 +226,7 @@ const Projects = () => {
         {/* Filter buttons - simplified */}
         <motion.div 
           variants={itemVariants}
-          className="flex flex-wrap justify-center gap-4 mb-12"
+          className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8 sm:mb-12"
         >
           {['all', 'web', 'devops'].map(filter => {
             const tooltipText = {
@@ -241,7 +241,7 @@ const Projects = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setActiveFilter(filter)}
-                  className={`px-6 py-2 rounded-full capitalize transition-all duration-300 ${
+                  className={`px-4 sm:px-6 py-1.5 sm:py-2 text-sm sm:text-base rounded-full capitalize transition-all duration-300 ${
                     activeFilter === filter
                       ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg shadow-primary/40'
                       : 'bg-gray-800/50 backdrop-blur-sm text-gray-300 hover:bg-gray-700'
@@ -258,7 +258,7 @@ const Projects = () => {
         <motion.div 
           animate={animateCard}
           transition={{ duration: 0.4 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 w-full"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8 w-full"
         >
           {filteredProjects.map((project, index) => (
             <motion.div 
@@ -301,16 +301,16 @@ const Projects = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col p-6 flex-grow">
-                <h3 className="text-xl font-bold mb-3 bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text group-hover:scale-105 transition-transform duration-300">
+              <div className="flex flex-col p-4 sm:p-6 flex-grow">
+                <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text group-hover:scale-105 transition-transform duration-300">
                   {project.title}
                 </h3>
-                <p className="text-gray-400 mb-4 flex-grow">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
+                <p className="text-gray-400 text-sm sm:text-base mb-3 sm:mb-4 flex-grow">{project.description}</p>
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4">
                   {project.technologies.map((tech, index) => (
                     <span 
                       key={index}
-                      className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full border border-primary/20 transition-all duration-300 hover:bg-primary/20 hover:-translate-y-1"
+                      className="px-2 sm:px-3 py-0.5 sm:py-1 bg-primary/10 text-primary text-xs sm:text-sm rounded-full border border-primary/20 transition-all duration-300 hover:bg-primary/20 hover:-translate-y-1"
                     >
                       {tech}
                     </span>
