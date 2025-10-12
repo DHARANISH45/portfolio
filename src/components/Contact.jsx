@@ -784,19 +784,7 @@ const Contact = () => {
                   </a>
                 </Tooltip>
                 
-                <Tooltip text=" Credly">
-                  <a 
-                    href="https://www.credly.com/users/dharanish-s-l-22itr018/" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-14 h-14 rounded-xl bg-black/50 border border-gray-700/50 hover:border-primary flex items-center justify-center text-gray-300 hover:text-primary hover:scale-110 transition-all duration-300"
-                    aria-label="Credly"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2L1 7v10l11 5 11-5V7L12 2zm0 2.5L20.76 9 12 13.56 3.24 9 12 4.5zm-8 6.32l8 3.6 8-3.6V16.5l-8 3.6-8-3.6v-5.68z"/>
-                    </svg>
-                  </a>
-                </Tooltip>
+                {/* Credly badge removed as requested */}
               </div>
             </div>
             
