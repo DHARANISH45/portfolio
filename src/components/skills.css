@@ -33,14 +33,3 @@
     transition: none !important;
   }
 }
-
-/* Noise Texture Overlay */
-#skills::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.15;
-  background-image: url('https://grainy-gradients.vercel.app/noise.svg');
-  z-index: 2;
-}

@@ -49,11 +49,9 @@ const Skills = () => {
 
   return (
     <section id="skills" ref={sectionRef} className="min-h-screen relative py-20 px-4 bg-black overflow-hidden flex items-center">
-      {/* Background Subtle Noise & Glow */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,#0a0a0a,black)]"></div>
-        <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
-      </div>
+      {/* Background radial gradient for depth - matching About section */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(59,130,246,0.1),transparent_50%)]"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(168,85,247,0.1),transparent_50%)]"></div>
 
       <div className="container mx-auto relative z-10 max-w-6xl">
         <motion.div
