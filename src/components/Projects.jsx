@@ -109,7 +109,7 @@ const Projects = () => {
       initial="hidden"
       animate={controls}
       variants={sectionVariants}
-      className="min-h-screen flex flex-col items-center bg-black py-20 px-4 relative overflow-hidden"
+      className="min-h-screen flex flex-col items-center bg-black py-12 sm:py-20 px-3 sm:px-4 relative overflow-hidden"
     >
       {/* Enhanced background elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
@@ -211,7 +211,7 @@ const Projects = () => {
       <div className="container mx-auto max-w-6xl flex flex-col items-center z-10">
         <motion.h2
           variants={itemVariants}
-          className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-10 md:mb-16 text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary relative"
+          className="text-2xl sm:text-3xl md:text-5xl font-bold text-center mb-6 sm:mb-10 md:mb-16 text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary relative"
         >
           My Projects
           <motion.span

@@ -48,7 +48,7 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" ref={sectionRef} className="min-h-screen relative py-20 px-4 bg-black overflow-hidden flex items-center">
+    <section id="skills" ref={sectionRef} className="min-h-screen relative py-12 sm:py-20 px-3 sm:px-4 bg-black overflow-hidden flex items-center">
       {/* Background radial gradient for depth - matching About section */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(59,130,246,0.1),transparent_50%)]"></div>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(168,85,247,0.1),transparent_50%)]"></div>
@@ -58,28 +58,28 @@ const Skills = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-16"
         >
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tighter mb-3">
+          <h2 className="text-2xl sm:text-4xl md:text-6xl font-black text-white tracking-tighter mb-2 sm:mb-3">
             TECH <span className="text-blue-500">STACK</span>
           </h2>
-          <p className="text-white/40 font-mono text-sm tracking-widest uppercase">My Arsenal of Technologies</p>
+          <p className="text-white/40 font-mono text-xs sm:text-sm tracking-widest uppercase">My Arsenal of Technologies</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-10">
           {skillCategories.map((category, idx) => (
             <motion.div
               key={category.title}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="relative p-8 rounded-[2rem] border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-colors group"
+              className="relative p-4 sm:p-6 md:p-8 rounded-[1.5rem] sm:rounded-[2rem] border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-colors group"
             >
-              <h3 className="text-lg font-bold text-white/50 mb-6 font-mono tracking-widest uppercase border-l-2 border-blue-500 pl-4 group-hover:text-blue-400 transition-colors">
+              <h3 className="text-sm sm:text-lg font-bold text-white/50 mb-3 sm:mb-6 font-mono tracking-widest uppercase border-l-2 border-blue-500 pl-3 sm:pl-4 group-hover:text-blue-400 transition-colors">
                 {category.title}
               </h3>
 
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-2 sm:gap-4">
                 {category.skills.map((skill, sIdx) => (
                   <motion.div
                     key={skill.name}
@@ -87,10 +87,10 @@ const Skills = () => {
                     animate={isInView ? { opacity: 1, scale: 1 } : {}}
                     transition={{ duration: 0.4, delay: (idx * 0.1) + (sIdx * 0.05) }}
                     whileHover={{ scale: 1.05, y: -2 }}
-                    className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.03] border border-white/5 hover:border-white/10 hover:shadow-lg hover:shadow-blue-500/5 transition-all cursor-default"
+                    className="flex items-center gap-1.5 sm:gap-2 px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl bg-white/[0.03] border border-white/5 hover:border-white/10 hover:shadow-lg hover:shadow-blue-500/5 transition-all cursor-default"
                   >
-                    <img src={skill.icon} alt={skill.name} className="w-6 h-6 object-contain" />
-                    <span className="text-white/80 font-medium text-sm">{skill.name}</span>
+                    <img src={skill.icon} alt={skill.name} className="w-4 h-4 sm:w-6 sm:h-6 object-contain" />
+                    <span className="text-white/80 font-medium text-xs sm:text-sm">{skill.name}</span>
                   </motion.div>
                 ))}
               </div>

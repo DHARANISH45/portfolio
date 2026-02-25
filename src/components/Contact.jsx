@@ -422,7 +422,7 @@ const Contact = () => {
   // Component continues with the return statement below
 
   return (
-    <section id="contact" ref={sectionRef} className="min-h-screen flex flex-col items-center justify-center py-20 px-4 relative overflow-hidden">
+    <section id="contact" ref={sectionRef} className="min-h-screen flex flex-col items-center justify-center py-12 sm:py-20 px-3 sm:px-4 relative overflow-hidden">
       {/* Designer background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-black"></div>
 
@@ -444,9 +444,9 @@ const Contact = () => {
       </div>
 
       <div className="container mx-auto max-w-6xl flex flex-col items-center relative z-10">
-        <div className="relative mb-12 flex flex-col items-center">
+        <div className="relative mb-8 sm:mb-12 flex flex-col items-center">
           <div className="hidden sm:block absolute -left-12 top-1/2 transform -translate-y-1/2 w-16 h-8 bg-primary/30 rounded-full blur-md"></div>
-          <h2 className="text-4xl sm:text-5xl md:text-7xl font-black text-center relative inline-block">
+          <h2 className="text-2xl sm:text-4xl md:text-7xl font-black text-center relative inline-block">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-secondary uppercase">
               Keep In Touch
             </span>
@@ -455,10 +455,10 @@ const Contact = () => {
           <div className="hidden sm:block absolute -right-12 top-1/2 transform -translate-y-1/2 w-16 h-8 bg-secondary/30 rounded-full blur-md"></div>
         </div>
 
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 relative">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-12 relative">
           {/* Contact Form */}
-          <div className="flex flex-col space-y-4">
-            <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col space-y-6 backdrop-blur-sm p-6 sm:p-8 rounded-xl border border-gray-800/50 bg-black/20 shadow-xl relative group hover-reveal">
+          <div className="flex flex-col space-y-3 sm:space-y-4">
+            <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col space-y-4 sm:space-y-6 backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-xl border border-gray-800/50 bg-black/20 shadow-xl relative group hover-reveal">
               {/* Design corner accents */}
               <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary/60 rounded-tl-lg"></div>
               <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary/60 rounded-tr-lg"></div>
@@ -493,7 +493,7 @@ const Contact = () => {
                     onChange={handleChange}
                     onFocus={() => handleFocus('name')}
                     onBlur={handleBlur}
-                    className={`w-full px-4 py-4 bg-black/30 border border-gray-700 rounded-lg text-white transition-all duration-300 outline-none focus:border-primary hover:border-gray-500 ${formErrors.name ? 'input-error' : formData.name ? 'input-success' : ''}`}
+                    className={`w-full px-3 py-3 sm:px-4 sm:py-4 bg-black/30 border border-gray-700 rounded-lg text-white text-sm sm:text-base transition-all duration-300 outline-none focus:border-primary hover:border-gray-500 ${formErrors.name ? 'input-error' : formData.name ? 'input-success' : ''}`}
                     required
                   />
                   <div className={`absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 ${formFocus === 'name' ? 'w-full' : ''}`}></div>
@@ -518,7 +518,7 @@ const Contact = () => {
                     onChange={handleChange}
                     onFocus={() => handleFocus('email')}
                     onBlur={handleBlur}
-                    className={`w-full px-4 py-4 bg-black/30 border border-gray-700 rounded-lg text-white transition-all duration-300 outline-none focus:border-primary hover:border-gray-500 ${formErrors.email ? 'input-error' : formData.email ? 'input-success' : ''}`}
+                    className={`w-full px-3 py-3 sm:px-4 sm:py-4 bg-black/30 border border-gray-700 rounded-lg text-white text-sm sm:text-base transition-all duration-300 outline-none focus:border-primary hover:border-gray-500 ${formErrors.email ? 'input-error' : formData.email ? 'input-success' : ''}`}
                     required
                   />
                   <div className={`absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 ${formFocus === 'email' ? 'w-full' : ''}`}></div>
@@ -542,8 +542,8 @@ const Contact = () => {
                     onChange={handleChange}
                     onFocus={() => handleFocus('message')}
                     onBlur={handleBlur}
-                    rows={5}
-                    className={`w-full px-4 py-4 bg-black/30 border border-gray-700 rounded-lg text-white resize-none transition-all duration-300 outline-none focus:border-primary hover:border-gray-500 ${formErrors.message ? 'input-error' : formData.message && formData.message.length >= 10 ? 'input-success' : ''}`}
+                    rows={4}
+                    className={`w-full px-3 py-3 sm:px-4 sm:py-4 bg-black/30 border border-gray-700 rounded-lg text-white text-sm sm:text-base resize-none transition-all duration-300 outline-none focus:border-primary hover:border-gray-500 ${formErrors.message ? 'input-error' : formData.message && formData.message.length >= 10 ? 'input-success' : ''}`}
                     required
                   ></textarea>
                   <div className={`absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 ${formFocus === 'message' ? 'w-full' : ''}`}></div>
@@ -580,7 +580,7 @@ const Contact = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="px-8 py-4 bg-transparent hover:bg-primary/20 text-white font-semibold rounded-lg transition-all duration-300 relative overflow-hidden border border-primary/50 hover:border-primary group disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="px-6 py-3 sm:px-8 sm:py-4 bg-transparent hover:bg-primary/20 text-white text-sm sm:text-base font-semibold rounded-lg transition-all duration-300 relative overflow-hidden border border-primary/50 hover:border-primary group disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <span className="relative z-10 flex items-center justify-center">
                       {isSubmitting ? (
@@ -611,7 +611,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Information */}
-          <div ref={infoRef} className="flex flex-col space-y-8 backdrop-blur-sm p-8 rounded-xl border border-gray-800/50 bg-black/20 shadow-xl h-fit relative hover-reveal">
+          <div ref={infoRef} className="flex flex-col space-y-5 sm:space-y-8 backdrop-blur-sm p-4 sm:p-6 md:p-8 rounded-xl border border-gray-800/50 bg-black/20 shadow-xl h-fit relative hover-reveal">
             {/* Design corner accents */}
             <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-secondary/60 rounded-tl-lg"></div>
             <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-secondary/60 rounded-tr-lg"></div>
@@ -620,11 +620,11 @@ const Contact = () => {
 
             {/* Contact info section */}
             <div className="flex flex-col space-y-5">
-              <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary flex items-center">
-                <div className="w-1 h-6 bg-gradient-to-b from-primary to-secondary mr-3 rounded-full"></div>
+              <h3 className="text-lg sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary flex items-center">
+                <div className="w-1 h-5 sm:h-6 bg-gradient-to-b from-primary to-secondary mr-3 rounded-full"></div>
                 Contact Information
               </h3>
-              <div className="flex flex-col space-y-6 text-gray-300">
+              <div className="flex flex-col space-y-4 sm:space-y-6 text-gray-300">
                 <div className="flex items-center group">
                   <div className="w-10 h-10 rounded-full bg-black/50 border border-primary/30 flex items-center justify-center mr-4 group-hover:border-primary group-hover:scale-110 transition-all duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -685,15 +685,15 @@ const Contact = () => {
 
             {/* Social links section */}
             <div className="flex flex-col space-y-5">
-              <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary flex items-center">
-                <div className="w-1 h-6 bg-gradient-to-b from-primary to-secondary mr-3 rounded-full"></div>
+              <h3 className="text-lg sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary flex items-center">
+                <div className="w-1 h-5 sm:h-6 bg-gradient-to-b from-primary to-secondary mr-3 rounded-full"></div>
                 Connect With Me
-              </h3><div className="social-links flex space-x-4 pl-4"><Tooltip text="LinkedIn">
+              </h3><div className="social-links flex space-x-3 sm:space-x-4 pl-4"><Tooltip text="LinkedIn">
                 <a
                   href="https://www.linkedin.com/in/dharanish-sl/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-14 h-14 rounded-xl bg-black/50 border border-gray-700/50 hover:border-primary flex items-center justify-center text-gray-300 hover:text-primary hover:scale-110 transition-all duration-300"
+                  className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl bg-black/50 border border-gray-700/50 hover:border-primary flex items-center justify-center text-gray-300 hover:text-primary hover:scale-110 transition-all duration-300"
                   aria-label="LinkedIn"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
@@ -707,7 +707,7 @@ const Contact = () => {
                     href="https://github.com/DHARANISH45"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-14 h-14 rounded-xl bg-black/50 border border-gray-700/50 hover:border-primary flex items-center justify-center text-gray-300 hover:text-primary hover:scale-110 transition-all duration-300"
+                    className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl bg-black/50 border border-gray-700/50 hover:border-primary flex items-center justify-center text-gray-300 hover:text-primary hover:scale-110 transition-all duration-300"
                     aria-label="GitHub"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
