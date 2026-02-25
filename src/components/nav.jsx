@@ -109,7 +109,16 @@ const Navbar = () => {
           </div>
 
 
-          {/* Mobile Toggle */}
+          {/* Tech Link & Toggle */}
+          <div className="hidden lg:flex items-center gap-4">
+            <a href="/Resume.pdf" download className="flex items-center gap-2 px-5 py-2 bg-blue-600/10 border border-blue-500/20 rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300 group">
+              <span className="text-[10px] font-mono font-bold tracking-widest uppercase">Download CV</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16" className="group-hover:translate-y-0.5 transition-transform">
+                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+              </svg>
+            </a>
+          </div>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="lg:hidden w-12 h-12 flex flex-col items-center justify-center gap-1.5 focus:outline-none"
@@ -147,12 +156,19 @@ const Navbar = () => {
             ))}
           </div>
 
-          <div className="mt-auto space-y-10">
+          <div className="mt-auto space-y-8">
+            <a href="/Resume.pdf" download className="w-full py-4 flex items-center justify-center gap-3 bg-white/5 border border-white/10 rounded-2xl text-white text-sm font-black tracking-widest uppercase hover:bg-blue-600 transition-all duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+              </svg>
+              Download CV
+            </a>
             <div className="h-[1px] w-full bg-white/10"></div>
             <div className="flex justify-between items-center">
               <div className="flex gap-6">
-                <a href="#" className="text-white/40 hover:text-blue-500 text-sm font-mono transition-colors">GH</a>
-                <a href="#" className="text-white/40 hover:text-blue-500 text-sm font-mono transition-colors">LI</a>
+                <a href="https://github.com/DHARANISH45" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-blue-500 text-sm font-mono transition-colors">GH</a>
+                <a href="https://www.linkedin.com/in/dharanish-sl/" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-blue-500 text-sm font-mono transition-colors">LI</a>
               </div>
               <span className="text-[10px] font-mono text-white/20 tracking-widest uppercase">KEC • Erode, India</span>
             </div>

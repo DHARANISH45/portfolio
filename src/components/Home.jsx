@@ -127,8 +127,12 @@ const Home = () => {
                   <a href="#projects" className="w-full sm:w-auto text-center px-8 py-4 bg-white text-black text-sm font-bold rounded-xl hover:bg-blue-500 hover:text-white transition-all duration-500 shadow-xl shadow-white/5">
                     View My Work
                   </a>
-                  <a href="#contact" className="w-full sm:w-auto text-center px-8 py-4 bg-white/5 border border-white/10 text-white text-sm font-bold rounded-xl hover:bg-white/10 hover:border-white/20 transition-all duration-500">
-                    Get In Touch
+                  <a href="/Resume.pdf" download className="w-full sm:w-auto text-center px-8 py-4 bg-white/5 border border-white/20 text-white text-sm font-bold rounded-xl hover:bg-white/10 hover:border-blue-500/50 transition-all duration-500 flex items-center justify-center gap-2 group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" className="group-hover:translate-y-0.5 transition-transform">
+                      <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                      <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+                    </svg>
+                    Download CV
                   </a>
                 </div>
               </motion.div>
