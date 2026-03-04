@@ -78,7 +78,31 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 sm:h-24">
 
           {/* Cyber Logo */}
-          <a href="#home" onClick={(e) => { e.preventDefault(); handleClick('Home', '#home'); }} className="relative group">
+          <a href="#home" onClick={(e) => { e.preventDefault(); handleClick('Home', '#home'); }} className="relative 
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          group">
             <div className="flex items-center gap-2 sm:gap-3">
               <div className="relative">
                 <div className="w-8 h-8 sm:w-10 sm:h-10 border border-blue-500/30 rounded-lg flex items-center justify-center rotate-45 group-hover:rotate-90 transition-all duration-500">
